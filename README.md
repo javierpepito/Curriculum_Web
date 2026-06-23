@@ -13,7 +13,7 @@ Estudiante de ingeniería en informática apasionado por el aprendizaje, destaco
 
 ### Direccion y contacto
 - Direccion:
-Pasaje Ovaguz #1525, Lampa, Santiago de Chile
+Lampa, Santiago de Chile
 - Telefono:
 +56 9 5310 5615
 - Correo:
