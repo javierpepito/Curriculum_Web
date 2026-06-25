@@ -181,6 +181,7 @@ main {
     max-width: 58ch;
     font-size: 1rem;
     line-height: 1.8;
+    text-align: justify ;
     color: #5b6479;
 }
 
@@ -228,6 +229,7 @@ main {
     position: relative;
     display: grid;
     place-items: center;
+    animation: photoFloat 7s ease-in-out infinite;
 }
 
 .hero-glow {
@@ -236,6 +238,7 @@ main {
     border-radius: 50%;
     background: radial-gradient(circle, rgba(70, 72, 212, 0.18), transparent 62%);
     filter: blur(24px);
+    animation: glowPulse 5s ease-in-out infinite;
 }
 
 .hero-photo {
@@ -248,6 +251,7 @@ main {
     border: 1px solid var(--card-border);
     transform: rotate(2deg);
     box-shadow: 0 18px 40px rgba(19, 27, 46, 0.1);
+    animation: photoCardTilt 7s ease-in-out infinite;
 }
 
 .hero-photo img {
@@ -255,12 +259,12 @@ main {
     height: 100%;
     object-fit: cover;
     border-radius: 16px;
-    filter: grayscale(100%);
-    transition: filter 0.6s ease;
+    filter: none;
+    transition: transform 0.6s ease, filter 0.6s ease;
 }
 
 .hero-photo:hover img {
-    filter: grayscale(0%);
+    transform: scale(1.03);
 }
 
 .content-section {
@@ -316,6 +320,10 @@ main {
     gap: 20px;
     align-items: end;
     margin-bottom: 16px;
+}
+
+.section-heading--compact {
+    margin-bottom: 12px;
 }
 
 .section-heading h3,
@@ -547,6 +555,10 @@ main {
 .tech-card img {
     width: 42px;
     height: 42px;
+    padding: 6px;
+    border-radius: 12px;
+    background: #ffffff;
+    object-fit: contain;
 }
 
 .tech-wordmark {
@@ -585,6 +597,112 @@ main {
 .tech-ubuntu { border-top: 3px solid #e95420; }
 .tech-kali { border-top: 3px solid #557c94; }
 .tech-pentaho { border-top: 3px solid #f59e0b; }
+
+.site-footer {
+    width: 100%;
+    background: #0f1724;
+    color: #eaf1ff;
+    margin-top: 24px;
+    padding: 28px 0;
+}
+
+.footer-inner {
+    max-width: 1120px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 22px 24px;
+    border: none;
+    border-radius: 0;
+    background: transparent;
+    box-shadow: none;
+}
+
+.footer-brand h3 {
+    margin: 6px 0 6px;
+    font-size: 1.4rem;
+    color: #ffffff;
+}
+
+.footer-brand p,
+.footer-rights p {
+    margin: 0;
+    color: rgba(234, 241, 255, 0.78);
+    line-height: 1.6;
+}
+
+.footer-kicker {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.76rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #9fb0ff;
+}
+
+.footer-contact {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 10px;
+}
+
+.footer-contact a {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ffffff;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.footer-contact a:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 255, 255, 0.14);
+}
+
+.footer-rights {
+    padding: 14px 4px 0;
+    text-align: center;
+}
+
+@keyframes photoFloat {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes photoCardTilt {
+    0%,
+    100% {
+        transform: rotate(2deg) translateY(0);
+    }
+
+    50% {
+        transform: rotate(0deg) translateY(-4px);
+    }
+}
+
+@keyframes glowPulse {
+    0%,
+    100% {
+        opacity: 0.75;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
 
 @media (max-width: 1120px) {
     .hero-grid,
@@ -648,6 +766,15 @@ main {
         width: 100%;
         padding-bottom: 2px;
     }
+
+    .footer-inner {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .footer-contact {
+        justify-content: flex-start;
+    }
 }
 
 @media (max-width: 520px) {
@@ -675,5 +802,29 @@ main {
         width: 100%;
         justify-content: center;
         text-align: center;
+    }
+}
+
+/* contactos horizontales bajo la foto/perfil */
+.contact-list--horizontal {
+    display: flex;
+    gap: 22px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.contact-list--horizontal li {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 160px;
+}
+
+@media (max-width: 760px) {
+    .contact-list--horizontal {
+        justify-content: flex-start;
+    }
+    .contact-list--horizontal li {
+        min-width: 100%;
     }
 }
