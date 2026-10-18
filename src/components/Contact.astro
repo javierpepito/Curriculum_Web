@@ -1,0 +1,213 @@
+---
+import { cvData } from '../data/cvData';
+---
+
+<section class="contact-section" id="contacto">
+  <div class="site-container contact-container">
+    <!-- Left Column: Big Pixel Typography matching Image 6 -->
+    <div class="contact-titles-wrap">
+      <span class="badge-pink">CANAL DE COMUNICACIÓN</span>
+
+      <div class="contact-hero-title">
+        <span class="pixel-solid-shadow contact-line-solid">INICIEMOS</span>
+        <span class="pixel-solid-shadow contact-line-solid">UNA</span>
+        <span class="pixel-outline-cyan contact-line-outline">NUEVA</span>
+        <span class="pixel-outline-cyan contact-line-outline">MISIÓN</span>
+      </div>
+
+      <p class="contact-subtitle">
+        Disponible para prácticas, colaboraciones y nuevos desafíos.
+      </p>
+    </div>
+
+    <!-- Right Column: Retro Contact Card matching Image 6 -->
+    <div class="contact-card-wrap">
+      <div class="contact-card">
+        <!-- Top Cyan Line Accent -->
+        <div class="card-accent-top"></div>
+
+        <div class="contact-items-list">
+          <!-- 1. Location -->
+          <div class="contact-item">
+            <div class="contact-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" />
+                <circle cx="12" cy="9" r="2.5" />
+              </svg>
+            </div>
+            <div class="contact-item-info">
+              <span class="contact-label">BASE DE OPERACIONES</span>
+              <span class="contact-value">{cvData.personal.location}</span>
+            </div>
+          </div>
+
+          <div class="contact-divider"></div>
+
+          <!-- 2. Phone / Communicator -->
+          <a href={`tel:${cvData.personal.phone.replace(/\s+/g, '')}`} class="contact-item contact-link">
+            <div class="contact-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+              </svg>
+            </div>
+            <div class="contact-item-info">
+              <span class="contact-label">COMUNICADOR</span>
+              <span class="contact-value">{cvData.personal.phone}</span>
+            </div>
+          </a>
+
+          <div class="contact-divider"></div>
+
+          <!-- 3. Email / Transmission -->
+          <a href={`mailto:${cvData.personal.email}`} class="contact-item contact-link">
+            <div class="contact-icon-box">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect width="20" height="16" x="2" y="4" rx="2" />
+                <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
+              </svg>
+            </div>
+            <div class="contact-item-info">
+              <span class="contact-label">TRANSMISIÓN</span>
+              <span class="contact-value">{cvData.personal.email}</span>
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact-section {
+    padding: 5rem 0 6rem;
+    position: relative;
+  }
+
+  .contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 4rem;
+    align-items: center;
+  }
+
+  /* Left Column */
+  .contact-titles-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .contact-hero-title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+    margin: 0.5rem 0;
+  }
+
+  .contact-line-solid,
+  .contact-line-outline {
+    font-size: clamp(2.4rem, 5.2vw, 3.8rem);
+    letter-spacing: -1px;
+  }
+
+  .contact-subtitle {
+    font-size: 1.15rem;
+    color: #9cb1ce;
+    line-height: 1.6;
+    max-width: 480px;
+  }
+
+  /* Right Column: Card */
+  .contact-card-wrap {
+    position: relative;
+  }
+
+  .contact-card {
+    position: relative;
+    background: #090e24;
+    border: 1px solid rgba(24, 37, 76, 0.9);
+    padding: 2.5rem 2rem;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+  }
+
+  .card-accent-top {
+    position: absolute;
+    top: -2px;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--cyan-neon);
+    box-shadow: 0 0 10px var(--cyan-neon);
+  }
+
+  .contact-items-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .contact-item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    text-decoration: none;
+    transition: transform 0.2s ease;
+  }
+
+  .contact-link:hover {
+    transform: translateX(4px);
+  }
+
+  .contact-icon-box {
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--cyan-neon);
+    color: var(--cyan-neon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 240, 255, 0.05);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  .contact-link:hover .contact-icon-box {
+    background: var(--cyan-neon);
+    color: var(--bg-space);
+    box-shadow: 0 0 12px var(--cyan-neon);
+  }
+
+  .contact-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .contact-label {
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    color: var(--cyan-neon);
+    letter-spacing: 1px;
+  }
+
+  .contact-value {
+    font-family: var(--font-tech);
+    font-size: 1.15rem;
+    font-weight: 600;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+    word-break: break-all;
+  }
+
+  .contact-divider {
+    height: 1px;
+    background: rgba(24, 37, 76, 0.7);
+  }
+
+  @media (max-width: 900px) {
+    .contact-container {
+      grid-template-columns: 1fr;
+      gap: 3.5rem;
+    }
+  }
+</style>

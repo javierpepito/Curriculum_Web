@@ -1,0 +1,436 @@
+---
+import { cvData } from '../data/cvData';
+---
+
+<section class="hero-section" id="inicio">
+  <div class="site-container hero-container">
+    <!-- Left Column: Player Title & Bio -->
+    <div class="hero-text-content">
+      <div class="hero-player-tag">
+        <span class="badge-pink">· JUGADOR 01 // PORTAFOLIO ·</span>
+      </div>
+
+      <h1 class="hero-main-title">
+        <span class="pixel-solid-shadow name-solid">{cvData.personal.shortName}</span>
+        <span class="pixel-outline-cyan name-outline">{cvData.personal.lastName}</span>
+      </h1>
+
+      <div class="hero-badge-role">
+        <span class="role-arrow">&gt;</span>
+        <span class="role-text">{cvData.personal.role}</span>
+        <span class="cursor-blink">█</span>
+      </div>
+
+      <p class="hero-bio">
+        {cvData.personal.shortBio}
+      </p>
+
+      <div class="hero-actions">
+        <a href="#misiones" class="btn-cyber-cyan">
+          <span>EXPLORAR MISIONES</span>
+          <span class="btn-arrow">↓</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Right Column: Planetary Orbit & Rocket Visual -->
+    <div class="hero-graphic-content">
+      <!-- Coordinate Top -->
+      <div class="coord-label coord-top">
+        <span>X: 042.18</span>
+      </div>
+
+      <div class="space-scene">
+        <!-- Orbit Ellipses -->
+        <svg class="orbit-svg" viewBox="0 0 400 400">
+          <ellipse cx="200" cy="200" rx="175" ry="75" class="orbit-path orbit-1" />
+          <ellipse cx="200" cy="200" rx="140" ry="110" class="orbit-path orbit-2" />
+        </svg>
+
+        <!-- Floating Yellow Satellite / Debris -->
+        <div class="floating-satellite">
+          <div class="pixel-beacon"></div>
+        </div>
+
+        <!-- Pixel Planet -->
+        <div class="pixel-planet">
+          <div class="planet-glow"></div>
+          <div class="planet-surface">
+            <!-- Pixel Continents -->
+            <div class="land land-1"></div>
+            <div class="land land-2"></div>
+            <div class="land land-3"></div>
+            <div class="land land-4"></div>
+          </div>
+          <div class="planet-shadow-overlay"></div>
+        </div>
+
+        <!-- Orbiting Pixel Rocket -->
+        <div class="rocket-orbit-wrapper">
+          <div class="pixel-rocket">
+            <!-- Rocket graphics -->
+            <div class="rocket-body">
+              <div class="rocket-tip"></div>
+              <div class="rocket-cockpit"></div>
+              <div class="rocket-fin left"></div>
+              <div class="rocket-fin right"></div>
+              <div class="rocket-flame"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Coordinate Bottom -->
+      <div class="coord-label coord-bottom">
+        <span>Y: 016.07</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    padding: 4.5rem 0 5rem;
+    overflow: hidden;
+  }
+
+  .hero-container {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  /* Left Column */
+  .hero-player-tag {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-main-title {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+    margin-bottom: 1.75rem;
+  }
+
+  .name-solid {
+    font-size: clamp(3rem, 7vw, 5.25rem);
+    letter-spacing: -2px;
+  }
+
+  .name-outline {
+    font-size: clamp(3rem, 7vw, 5.25rem);
+    letter-spacing: -2px;
+  }
+
+  .hero-badge-role {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-pixel);
+    font-size: clamp(0.7rem, 1.8vw, 0.88rem);
+    color: var(--cyan-neon);
+    margin-bottom: 1.75rem;
+    letter-spacing: 0.5px;
+  }
+
+  .role-arrow {
+    color: var(--pink-neon);
+  }
+
+  .cursor-blink {
+    color: var(--cyan-neon);
+  }
+
+  .hero-bio {
+    font-family: var(--font-body);
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: #9cb1ce;
+    max-width: 520px;
+    margin-bottom: 2.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+  }
+
+  .btn-arrow {
+    font-size: 0.85rem;
+  }
+
+  /* Right Column: Planetary System */
+  .hero-graphic-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 380px;
+  }
+
+  .coord-label {
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    color: var(--cyan-neon);
+    letter-spacing: 1px;
+    opacity: 0.8;
+  }
+
+  .coord-top {
+    align-self: flex-start;
+    margin-bottom: 0.5rem;
+    margin-left: 2rem;
+  }
+
+  .coord-bottom {
+    align-self: flex-end;
+    margin-top: 0.5rem;
+    margin-right: 2rem;
+  }
+
+  .space-scene {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Orbits */
+  .orbit-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 380px;
+    height: 380px;
+    transform: translate(-50%, -50%) rotate(-18deg);
+    pointer-events: none;
+  }
+
+  .orbit-path {
+    fill: none;
+    stroke: rgba(0, 240, 255, 0.22);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 6;
+  }
+
+  .orbit-2 {
+    stroke: rgba(255, 0, 127, 0.15);
+    stroke-dasharray: 2 8;
+  }
+
+  /* Floating Beacon Satellite */
+  .floating-satellite {
+    position: absolute;
+    top: 32%;
+    left: 12%;
+    z-index: 10;
+  }
+
+  .pixel-beacon {
+    width: 10px;
+    height: 10px;
+    background: var(--yellow-accent);
+    box-shadow: 0 0 10px var(--yellow-accent);
+    transform: rotate(45deg);
+    animation: satelliteFloat 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes satelliteFloat {
+    0% { transform: translateY(0px) rotate(45deg); }
+    100% { transform: translateY(-8px) rotate(45deg); }
+  }
+
+  /* Pixel Planet */
+  .pixel-planet {
+    position: relative;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    background: #1c2766;
+    overflow: hidden;
+    box-shadow: 
+      0 0 35px rgba(0, 240, 255, 0.4),
+      inset -18px -18px 0px rgba(7, 11, 35, 0.65);
+    border: 3px solid rgba(0, 240, 255, 0.85);
+  }
+
+  .planet-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 25px rgba(0, 240, 255, 0.35);
+    pointer-events: none;
+  }
+
+  .planet-surface {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Pixelated continents */
+  .land {
+    position: absolute;
+    background: #00f0ff;
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  }
+
+  .land-1 {
+    top: 38px;
+    left: 28px;
+    width: 52px;
+    height: 22px;
+    clip-path: polygon(
+      0% 20%, 30% 20%, 30% 0%, 75% 0%, 75% 40%, 100% 40%, 
+      100% 80%, 60% 80%, 60% 100%, 15% 100%, 15% 60%, 0% 60%
+    );
+  }
+
+  .land-2 {
+    top: 98px;
+    right: 24px;
+    width: 65px;
+    height: 38px;
+    clip-path: polygon(
+      20% 0%, 100% 0%, 100% 70%, 70% 70%, 70% 100%, 
+      0% 100%, 0% 40%, 20% 40%
+    );
+  }
+
+  .land-3 {
+    bottom: 24px;
+    left: 55px;
+    width: 32px;
+    height: 24px;
+    clip-path: polygon(0% 0%, 80% 0%, 80% 60%, 40% 60%, 40% 100%, 0% 100%);
+  }
+
+  .planet-shadow-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background: rgba(8, 12, 38, 0.45);
+    pointer-events: none;
+  }
+
+  /* Rocket in Orbit */
+  .rocket-orbit-wrapper {
+    position: absolute;
+    width: 330px;
+    height: 330px;
+    transform: rotate(-18deg);
+    animation: orbitRocket 14s linear infinite;
+    pointer-events: none;
+  }
+
+  @keyframes orbitRocket {
+    0% {
+      transform: rotate(-18deg);
+    }
+    100% {
+      transform: rotate(342deg);
+    }
+  }
+
+  .pixel-rocket {
+    position: absolute;
+    top: 30px;
+    right: 25px;
+    transform: rotate(45deg);
+  }
+
+  .rocket-body {
+    position: relative;
+    width: 36px;
+    height: 16px;
+    background: #ffffff;
+    box-shadow: 2px 2px 0px rgba(0, 0, 0, 0.4);
+  }
+
+  .rocket-tip {
+    position: absolute;
+    right: -10px;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 10px solid #ffffff;
+  }
+
+  .rocket-cockpit {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 6px;
+    height: 8px;
+    background: var(--cyan-neon);
+  }
+
+  .rocket-fin {
+    position: absolute;
+    width: 10px;
+    height: 6px;
+    background: var(--pink-neon);
+  }
+
+  .rocket-fin.left {
+    top: -6px;
+    left: 6px;
+  }
+
+  .rocket-fin.right {
+    bottom: -6px;
+    left: 6px;
+  }
+
+  .rocket-flame {
+    position: absolute;
+    left: -12px;
+    top: 3px;
+    width: 12px;
+    height: 10px;
+    background: var(--yellow-accent);
+    clip-path: polygon(100% 0%, 0% 50%, 100% 100%);
+    animation: flameFlicker 0.25s infinite alternate;
+  }
+
+  @keyframes flameFlicker {
+    0% { transform: scaleX(0.7); background: var(--yellow-accent); }
+    100% { transform: scaleX(1.3); background: #ff8800; }
+  }
+
+  @media (max-width: 900px) {
+    .hero-container {
+      grid-template-columns: 1fr;
+      text-align: center;
+      gap: 3.5rem;
+    }
+
+    .hero-main-title {
+      align-items: center;
+    }
+
+    .hero-badge-role {
+      justify-content: center;
+    }
+
+    .hero-bio {
+      margin: 0 auto 2rem;
+    }
+
+    .hero-actions {
+      justify-content: center;
+    }
+
+    .hero-graphic-content {
+      order: -1;
+    }
+  }
+</style>

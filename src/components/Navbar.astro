@@ -1,0 +1,201 @@
+---
+import { cvData } from '../data/cvData';
+---
+
+<header class="cyber-header">
+  <div class="site-container nav-container">
+    <!-- Brand / Logo -->
+    <a href="#" class="brand-link">
+      <div class="brand-diamond">
+        <div class="inner-diamond"></div>
+      </div>
+      <span class="brand-text">{cvData.personal.systemId}</span>
+    </a>
+
+    <!-- Navigation links -->
+    <nav class="nav-menu">
+      <a href="#perfil" class="nav-item">PERFIL</a>
+      <a href="#tecnologias" class="nav-item">TECNOLOGÍAS</a>
+      <a href="#misiones" class="nav-item">MISIONES</a>
+      <a href="#contacto" class="nav-item">CONTACTO</a>
+    </nav>
+
+    <!-- System status badge -->
+    <div class="system-status">
+      <span class="status-indicator"></span>
+      <span class="status-text">SISTEMA ONLINE</span>
+    </div>
+  </div>
+
+  <!-- Tech line below header with crosshair markers -->
+  <div class="nav-tech-line">
+    <div class="site-container tech-line-inner">
+      <span class="tech-cross">+</span>
+      <div class="tech-divider"></div>
+      <span class="tech-dot"></span>
+      <div class="tech-divider"></div>
+      <span class="tech-cross">+</span>
+    </div>
+  </div>
+</header>
+
+<style>
+  .cyber-header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(6, 8, 20, 0.92);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid rgba(24, 37, 76, 0.6);
+  }
+
+  .nav-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1.25rem;
+    padding-bottom: 1.25rem;
+  }
+
+  /* Logo */
+  .brand-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    text-decoration: none;
+  }
+
+  .brand-diamond {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--cyan-neon);
+    transform: rotate(45deg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+    background: rgba(0, 240, 255, 0.1);
+  }
+
+  .inner-diamond {
+    width: 8px;
+    height: 8px;
+    background: var(--pink-neon);
+    box-shadow: 0 0 6px var(--pink-neon);
+  }
+
+  .brand-text {
+    font-family: var(--font-pixel);
+    font-size: 0.95rem;
+    color: var(--cyan-neon);
+    letter-spacing: 2px;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+  }
+
+  /* Nav Links */
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .nav-item {
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: #a4b3c9;
+    text-decoration: none;
+    letter-spacing: 1.5px;
+    transition: all 0.2s ease;
+    position: relative;
+    padding: 0.25rem 0;
+  }
+
+  .nav-item:hover {
+    color: var(--cyan-neon);
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.6);
+  }
+
+  /* System status */
+  .system-status {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    color: var(--cyan-neon);
+    letter-spacing: 1px;
+  }
+
+  .status-indicator {
+    width: 8px;
+    height: 8px;
+    background: var(--cyan-neon);
+    box-shadow: 0 0 10px var(--cyan-neon);
+    animation: pulse 2s infinite ease-in-out;
+  }
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.4;
+      transform: scale(0.85);
+    }
+  }
+
+  /* Tech line */
+  .nav-tech-line {
+    width: 100%;
+    position: relative;
+  }
+
+  .tech-line-inner {
+    display: flex;
+    align-items: center;
+    color: rgba(0, 240, 255, 0.4);
+    font-size: 0.75rem;
+    font-family: var(--font-pixel);
+    line-height: 1;
+  }
+
+  .tech-divider {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      rgba(0, 240, 255, 0.3) 0%,
+      rgba(0, 240, 255, 0.08) 50%,
+      rgba(0, 240, 255, 0.3) 100%
+    );
+  }
+
+  .tech-dot {
+    width: 3px;
+    height: 3px;
+    background: var(--cyan-neon);
+    margin: 0 1rem;
+    opacity: 0.5;
+  }
+
+  .tech-cross {
+    opacity: 0.5;
+    padding: 0 0.5rem;
+  }
+
+  @media (max-width: 850px) {
+    .nav-menu {
+      gap: 1.25rem;
+    }
+    .system-status .status-text {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .nav-menu {
+      display: none;
+    }
+  }
+</style>

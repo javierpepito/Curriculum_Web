@@ -1,0 +1,660 @@
+---
+import { cvData } from '../data/cvData';
+import MissionModal from './MissionModal.astro';
+---
+
+<section class="missions-section" id="misiones">
+  <div class="site-container">
+    <!-- Section Header matching Image 3 & 5 -->
+    <div class="section-header">
+      <span class="badge-pink">BITÁCORA DE OPERACIONES</span>
+      <div class="section-title-wrap">
+        <span class="section-number">03</span>
+        <h2 class="section-title">MISIONES</h2>
+        <div class="section-line"></div>
+        <span class="section-stat">04 DESBLOQUEADAS</span>
+      </div>
+    </div>
+
+    <!-- Missions Cards Grid -->
+    <div class="missions-grid">
+      {cvData.missions.map((mission) => (
+        <article class="mission-card cyber-card" data-mission-id={mission.id}>
+          <!-- Top Card Meta -->
+          <div class="mission-card-header">
+            <span class="mission-number-tag">MISIÓN {mission.number}</span>
+            <span class="mission-status-tag">
+              <span class="status-box">■</span> DESBLOQUEADA
+            </span>
+          </div>
+
+          <!-- Perspective Grid Graphic Frame -->
+          <div class="mission-visual-box">
+            <div class="wireframe-plane"></div>
+            
+            {mission.type === 'iot' && (
+              <div class="graphic-element graphic-iot">
+                <div class="circuit-board">
+                  <div class="chip-core"></div>
+                  <div class="circuit-wire wire-left">
+                    <span class="node pink-node"></span>
+                  </div>
+                  <div class="circuit-wire wire-right">
+                    <span class="node cyan-node"></span>
+                  </div>
+                  <span class="node floating-node-1"></span>
+                </div>
+              </div>
+            )}
+
+            {mission.type === 'web' && (
+              <div class="graphic-element graphic-web">
+                <div class="browser-mockup">
+                  <div class="browser-bar">
+                    <span class="bar-dot pink-dot"></span>
+                    <span class="bar-dot yellow-dot"></span>
+                  </div>
+                  <div class="browser-content">
+                    <div class="content-block-left"></div>
+                    <div class="content-block-cyan"></div>
+                    <div class="content-lines">
+                      <span class="line-mock"></span>
+                      <span class="line-mock short"></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {mission.type === 'mobile' && (
+              <div class="graphic-element graphic-space">
+                <div class="space-field">
+                  <div class="space-ship-cursor"></div>
+                  <div class="trajectory-line"></div>
+                  <div class="target-planet"></div>
+                </div>
+              </div>
+            )}
+
+            {mission.type === 'data' && (
+              <div class="graphic-element graphic-data">
+                <div class="chart-container">
+                  <div class="chart-line-trend"></div>
+                  <div class="chart-bars">
+                    <div class="bar bar-cyan"></div>
+                    <div class="bar bar-pink"></div>
+                    <div class="bar bar-yellow"></div>
+                  </div>
+                </div>
+              </div>
+            )}
+          </div>
+
+          <!-- Mission Information -->
+          <div class="mission-body">
+            <h3 class="mission-title font-pixel">{mission.title}</h3>
+            <p class="mission-desc">{mission.shortDesc}</p>
+
+            <!-- Tech Badges -->
+            <div class="mission-techs-list">
+              {mission.technologies.slice(0, 3).map((tech) => (
+                <span class="tech-chip">{tech}</span>
+              ))}
+            </div>
+          </div>
+
+          <!-- Bottom Status & Action Bar -->
+          <div class="mission-card-footer">
+            <span class="footer-status">{mission.status}</span>
+            <button
+              type="button"
+              class="btn-open-mission font-pixel"
+              data-mission={JSON.stringify(mission)}
+            >
+              VER ARCHIVO &gt;
+            </button>
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+
+  <!-- Shared Modal Component -->
+  <MissionModal />
+</section>
+
+<!-- Client Script to handle modal interaction -->
+<script>
+  import { cvData } from '../data/cvData';
+
+  function setupMissionModal() {
+    const modalBackdrop = document.getElementById('mission-modal');
+    const closeTrigger = document.getElementById('modal-close-trigger');
+    const titleEl = document.getElementById('modal-mission-title');
+    const numEl = document.getElementById('modal-mission-number');
+    const descEl = document.getElementById('modal-mission-desc');
+    const challengesEl = document.getElementById('modal-mission-challenges');
+    const techsEl = document.getElementById('modal-mission-techs');
+    const statusEl = document.getElementById('modal-mission-status');
+    const repoEl = document.getElementById('modal-mission-repo');
+    const graphicEl = document.getElementById('modal-graphic-content');
+
+    if (!modalBackdrop) return;
+
+    function openModal(mission: any) {
+      if (!mission) return;
+
+      if (numEl) numEl.textContent = `ARCHIVO DE MISIÓN // ${mission.number}`;
+      if (titleEl) titleEl.textContent = mission.title;
+      if (descEl) descEl.textContent = mission.fullDesc;
+      if (challengesEl) challengesEl.textContent = mission.challenges;
+      if (statusEl) statusEl.textContent = mission.status;
+      if (repoEl) repoEl.setAttribute('href', mission.repoUrl || 'https://github.com');
+
+      // Populate technologies
+      if (techsEl) {
+        techsEl.innerHTML = '';
+        mission.technologies.forEach((tech: string) => {
+          const chip = document.createElement('span');
+          chip.className = 'modal-chip';
+          chip.textContent = tech;
+          techsEl.appendChild(chip);
+        });
+      }
+
+      // Populate graphic based on type
+      if (graphicEl) {
+        let graphicHtml = '';
+        if (mission.type === 'iot') {
+          graphicHtml = `
+            <div class="circuit-board" style="transform: scale(1.2);">
+              <div class="chip-core"></div>
+              <div class="circuit-wire wire-left"><span class="node pink-node"></span></div>
+              <div class="circuit-wire wire-right"><span class="node cyan-node"></span></div>
+              <span class="node floating-node-1"></span>
+            </div>
+          `;
+        } else if (mission.type === 'web') {
+          graphicHtml = `
+            <div class="browser-mockup" style="transform: scale(1.2);">
+              <div class="browser-bar">
+                <span class="bar-dot pink-dot"></span>
+                <span class="bar-dot yellow-dot"></span>
+              </div>
+              <div class="browser-content">
+                <div class="content-block-left"></div>
+                <div class="content-block-cyan"></div>
+                <div class="content-lines">
+                  <span class="line-mock"></span>
+                  <span class="line-mock short"></span>
+                </div>
+              </div>
+            </div>
+          `;
+        } else if (mission.type === 'mobile') {
+          graphicHtml = `
+            <div class="space-field" style="transform: scale(1.2);">
+              <div class="space-ship-cursor"></div>
+              <div class="trajectory-line"></div>
+              <div class="target-planet"></div>
+            </div>
+          `;
+        } else {
+          graphicHtml = `
+            <div class="chart-container" style="transform: scale(1.2);">
+              <div class="chart-line-trend"></div>
+              <div class="chart-bars">
+                <div class="bar bar-cyan"></div>
+                <div class="bar bar-pink"></div>
+                <div class="bar bar-yellow"></div>
+              </div>
+            </div>
+          `;
+        }
+        graphicEl.innerHTML = graphicHtml;
+      }
+
+      modalBackdrop.classList.add('active');
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalBackdrop?.classList.remove('active');
+      modalBackdrop?.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Attach click events on "VER ARCHIVO >" buttons
+    const openBtns = document.querySelectorAll('.btn-open-mission');
+    openBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const dataStr = (btn as HTMLElement).dataset.mission;
+        if (dataStr) {
+          try {
+            const missionData = JSON.parse(dataStr);
+            openModal(missionData);
+          } catch (err) {
+            console.error('Error parsing mission data:', err);
+          }
+        }
+      });
+    });
+
+    // Also clicking anywhere on the card opens the mission
+    const cards = document.querySelectorAll('.mission-card');
+    cards.forEach((card) => {
+      card.addEventListener('click', () => {
+        const id = (card as HTMLElement).dataset.missionId;
+        const mission = cvData.missions.find((m) => m.id === id);
+        if (mission) openModal(mission);
+      });
+    });
+
+    // Close handlers
+    closeTrigger?.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalBackdrop.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+
+  // Run setup when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupMissionModal);
+  } else {
+    setupMissionModal();
+  }
+</script>
+
+<style>
+  .missions-section {
+    padding: 4.5rem 0 5rem;
+    position: relative;
+  }
+
+  .missions-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.25rem;
+  }
+
+  /* Mission Card Styling */
+  .mission-card {
+    display: flex;
+    flex-direction: column;
+    padding: 1.5rem;
+    background: #090e24;
+    cursor: pointer;
+  }
+
+  .mission-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+  }
+
+  .mission-number-tag {
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    color: var(--cyan-neon);
+    letter-spacing: 1px;
+  }
+
+  .mission-status-tag {
+    font-family: var(--font-pixel);
+    font-size: 0.62rem;
+    color: var(--cyan-neon);
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+
+  .status-box {
+    color: var(--cyan-neon);
+    font-size: 0.75rem;
+  }
+
+  /* 3D Wireframe Visual Box */
+  .mission-visual-box {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    background: #050816;
+    border: 1px solid #142042;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .wireframe-plane {
+    position: absolute;
+    bottom: -35px;
+    left: -20%;
+    width: 140%;
+    height: 160px;
+    background-image: 
+      linear-gradient(rgba(0, 240, 255, 0.22) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.22) 1px, transparent 1px);
+    background-size: 24px 24px;
+    transform: perspective(200px) rotateX(60deg);
+    transform-origin: bottom center;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+  }
+
+  .graphic-element {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+  }
+
+  .mission-card:hover .graphic-element {
+    transform: scale(1.05);
+  }
+
+  /* 1. IoT Graphic */
+  :global(.circuit-board) {
+    position: relative;
+    width: 140px;
+    height: 75px;
+    background: #08112c;
+    border: 1.5px solid var(--cyan-neon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+  }
+
+  :global(.chip-core) {
+    width: 44px;
+    height: 38px;
+    background: #040816;
+    border: 1.5px solid var(--cyan-neon);
+  }
+
+  :global(.circuit-wire) {
+    position: absolute;
+    height: 2px;
+  }
+
+  :global(.wire-left) {
+    left: 8px;
+    width: 38px;
+    background: var(--yellow-accent);
+  }
+
+  :global(.wire-right) {
+    right: 8px;
+    width: 38px;
+    background: var(--yellow-accent);
+  }
+
+  :global(.node) {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+  }
+
+  :global(.pink-node) {
+    background: var(--pink-neon);
+    box-shadow: 0 0 8px var(--pink-neon);
+    left: 0;
+    top: -3px;
+  }
+
+  :global(.cyan-node) {
+    background: var(--cyan-neon);
+    box-shadow: 0 0 8px var(--cyan-neon);
+    right: 0;
+    top: -3px;
+  }
+
+  :global(.floating-node-1) {
+    position: absolute;
+    top: 10px;
+    right: 18px;
+    background: var(--cyan-neon);
+    box-shadow: 0 0 8px var(--cyan-neon);
+  }
+
+  /* 2. Web Browser Mockup */
+  :global(.browser-mockup) {
+    position: relative;
+    width: 150px;
+    height: 90px;
+    background: #111738;
+    border: 1.5px solid #233266;
+    box-shadow: 4px 4px 0px rgba(0,0,0,0.4);
+  }
+
+  :global(.browser-bar) {
+    display: flex;
+    gap: 4px;
+    padding: 4px 6px;
+    background: #0a0e24;
+    border-bottom: 1px solid #1c2754;
+  }
+
+  :global(.bar-dot) {
+    width: 6px;
+    height: 6px;
+  }
+  :global(.pink-dot) { background: var(--pink-neon); }
+  :global(.yellow-dot) { background: var(--yellow-accent); }
+
+  :global(.browser-content) {
+    padding: 10px;
+    position: relative;
+  }
+
+  :global(.content-block-left) {
+    width: 38px;
+    height: 38px;
+    background: #53388f;
+    box-shadow: 2px 2px 0px #241646;
+    display: inline-block;
+  }
+
+  :global(.content-block-cyan) {
+    position: absolute;
+    left: 36px;
+    top: 26px;
+    width: 22px;
+    height: 22px;
+    background: var(--cyan-neon);
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+  }
+
+  :global(.content-lines) {
+    position: absolute;
+    right: 12px;
+    top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  :global(.line-mock) {
+    width: 44px;
+    height: 4px;
+    background: #2b396e;
+  }
+  :global(.line-mock.short) {
+    width: 30px;
+  }
+
+  /* 3. Space / Mobile radar */
+  :global(.space-field) {
+    position: relative;
+    width: 170px;
+    height: 85px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  :global(.space-ship-cursor) {
+    width: 0;
+    height: 0;
+    border-left: 12px solid var(--cyan-neon);
+    border-top: 7px solid transparent;
+    border-bottom: 7px solid transparent;
+    filter: drop-shadow(0 0 6px var(--cyan-neon));
+    transform: rotate(20deg);
+  }
+
+  :global(.trajectory-line) {
+    flex: 1;
+    height: 1px;
+    border-top: 1.5px dashed rgba(0, 240, 255, 0.45);
+    margin: 0 10px;
+  }
+
+  :global(.target-planet) {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #9933cc;
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.6);
+  }
+
+  /* 4. Data Chart Graphic */
+  :global(.chart-container) {
+    position: relative;
+    width: 160px;
+    height: 90px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+  }
+
+  :global(.chart-line-trend) {
+    position: absolute;
+    top: 12px;
+    left: 5px;
+    width: 110px;
+    height: 2px;
+    background: var(--cyan-neon);
+    box-shadow: 0 0 10px var(--cyan-neon);
+    transform: rotate(-16deg);
+    transform-origin: left bottom;
+  }
+
+  :global(.chart-bars) {
+    display: flex;
+    align-items: flex-end;
+    gap: 12px;
+    padding-left: 15px;
+    border-bottom: 1.5px solid #233464;
+    padding-bottom: 2px;
+  }
+
+  :global(.bar) {
+    width: 22px;
+  }
+  :global(.bar-cyan) {
+    height: 42px;
+    background: var(--cyan-neon);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+  }
+  :global(.bar-pink) {
+    height: 60px;
+    background: var(--pink-neon);
+    box-shadow: 0 0 8px rgba(255, 0, 127, 0.5);
+  }
+  :global(.bar-yellow) {
+    height: 48px;
+    background: var(--yellow-accent);
+    box-shadow: 0 0 8px rgba(255, 234, 0, 0.5);
+  }
+
+  /* Body Content */
+  .mission-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .mission-title {
+    font-size: 1.15rem;
+    color: #ffffff;
+    letter-spacing: -0.5px;
+  }
+
+  .mission-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #9cb1ce;
+  }
+
+  .mission-techs-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: auto;
+  }
+
+  .tech-chip {
+    font-family: var(--font-pixel);
+    font-size: 0.58rem;
+    padding: 0.35rem 0.6rem;
+    background: #040714;
+    border: 1px solid #1a2952;
+    color: #9cb1ce;
+  }
+
+  /* Footer bar */
+  .mission-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(24, 37, 76, 0.8);
+    padding-top: 1.1rem;
+  }
+
+  .footer-status {
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    color: var(--cyan-neon);
+    letter-spacing: 0.5px;
+  }
+
+  .btn-open-mission {
+    background: none;
+    border: none;
+    font-size: 0.65rem;
+    color: var(--pink-neon);
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .btn-open-mission:hover {
+    color: #ffffff;
+    text-shadow: 0 0 8px var(--pink-neon);
+    transform: translateX(3px);
+  }
+
+  @media (max-width: 900px) {
+    .missions-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

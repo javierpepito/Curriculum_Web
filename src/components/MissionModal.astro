@@ -1,0 +1,324 @@
+---
+// MissionModal.astro - Pixel Art Modal Dialog matching Design Image 4
+---
+
+<div id="mission-modal" class="modal-backdrop" aria-hidden="true">
+  <div class="modal-dialog cyber-modal">
+    <!-- Modal Header -->
+    <div class="modal-header">
+      <div class="header-info">
+        <span class="badge-pink" id="modal-mission-number">ARCHIVO DE MISIÓN // 01</span>
+        <h3 class="modal-title font-pixel" id="modal-mission-title">Proyecto de IoT</h3>
+      </div>
+      <button type="button" class="modal-close-btn" id="modal-close-trigger" aria-label="Cerrar modal">
+        ✕
+      </button>
+    </div>
+
+    <!-- Retro Wireframe Graphic Container -->
+    <div class="modal-visual-frame">
+      <div class="visual-grid-floor"></div>
+      <div class="visual-graphic-container" id="modal-graphic-content">
+        <!-- Injected dynamically based on mission -->
+      </div>
+    </div>
+
+    <!-- Modal Two Columns Content matching Image 4 -->
+    <div class="modal-body-grid">
+      <!-- Left Column: Full description & Challenges -->
+      <div class="modal-col-left">
+        <div class="modal-section-block">
+          <h4 class="modal-section-heading">
+            <span class="step-num">01</span>
+            <span>DESCRIPCIÓN COMPLETA</span>
+          </h4>
+          <p class="modal-description" id="modal-mission-desc">
+            Estación inteligente capaz de recopilar temperatura, humedad y calidad del aire.
+          </p>
+        </div>
+
+        <div class="modal-section-block">
+          <h4 class="modal-section-heading">
+            <span class="step-num">02</span>
+            <span>DIFICULTADES SUPERADAS</span>
+          </h4>
+          <p class="modal-challenges" id="modal-mission-challenges">
+            Estabilizar la comunicación entre sensores, reducir la pérdida de paquetes.
+          </p>
+        </div>
+      </div>
+
+      <!-- Right Column: Tech tags, Status & Action -->
+      <div class="modal-col-right">
+        <div class="modal-section-block">
+          <h4 class="modal-section-heading">TECNOLOGÍAS</h4>
+          <div class="modal-tech-tags" id="modal-mission-techs">
+            <!-- Tech badges injected dynamically -->
+          </div>
+        </div>
+
+        <div class="modal-section-block">
+          <h4 class="modal-section-heading">ESTADO ACTUAL</h4>
+          <div class="modal-status-badge">
+            <span class="status-square">■</span>
+            <span id="modal-mission-status">Prototipo funcional</span>
+          </div>
+        </div>
+
+        <div class="modal-action-wrap">
+          <a href="#" target="_blank" rel="noopener noreferrer" class="btn-repo" id="modal-mission-repo">
+            <span class="repo-code-symbol">&lt; / &gt;</span>
+            <span class="repo-text">VER REPOSITORIO</span>
+            <span class="repo-arrow">↗</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    background: rgba(4, 6, 16, 0.88);
+    backdrop-filter: blur(6px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+  }
+
+  .modal-backdrop.active {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Cyber Modal Box with cyan border and magenta offset shadow */
+  .cyber-modal {
+    position: relative;
+    width: 100%;
+    max-width: 820px;
+    background: #080d22;
+    border: 2px solid var(--cyan-neon);
+    box-shadow: 
+      8px 8px 0px var(--pink-neon),
+      0 0 35px rgba(0, 240, 255, 0.25);
+    padding: 2rem;
+    max-height: 90vh;
+    overflow-y: auto;
+    transform: scale(0.95);
+    transition: transform 0.25s ease;
+  }
+
+  .modal-backdrop.active .cyber-modal {
+    transform: scale(1);
+  }
+
+  /* Modal Header */
+  .modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 1.5rem;
+  }
+
+  .header-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .modal-title {
+    font-size: clamp(1.2rem, 3vw, 1.75rem);
+    color: #ffffff;
+    letter-spacing: -1px;
+    margin: 0;
+  }
+
+  .modal-close-btn {
+    width: 36px;
+    height: 36px;
+    background: #060814;
+    border: 1px solid var(--pink-neon);
+    color: var(--pink-neon);
+    font-family: var(--font-pixel);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .modal-close-btn:hover {
+    background: var(--pink-neon);
+    color: #ffffff;
+    box-shadow: 0 0 12px var(--pink-neon);
+  }
+
+  /* Visual Frame with 3D Grid Floor */
+  .modal-visual-frame {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: #040716;
+    border: 1px solid #142042;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2rem;
+  }
+
+  .visual-grid-floor {
+    position: absolute;
+    bottom: -40px;
+    left: -20%;
+    width: 140%;
+    height: 180px;
+    background-image: 
+      linear-gradient(rgba(0, 240, 255, 0.25) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.25) 1px, transparent 1px);
+    background-size: 28px 28px;
+    transform: perspective(220px) rotateX(60deg);
+    transform-origin: bottom center;
+    mask-image: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+    -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,1) 40%, rgba(0,0,0,0) 100%);
+  }
+
+  .visual-graphic-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Two Column Grid */
+  .modal-body-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 0.75fr;
+    gap: 2.25rem;
+    border-top: 1px solid rgba(24, 37, 76, 0.8);
+    padding-top: 1.75rem;
+  }
+
+  .modal-col-left {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .modal-col-right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    border-left: 1px solid rgba(24, 37, 76, 0.8);
+    padding-left: 2rem;
+  }
+
+  .modal-section-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-pixel);
+    font-size: 0.68rem;
+    color: var(--cyan-neon);
+    letter-spacing: 1px;
+    margin-bottom: 0.65rem;
+  }
+
+  .step-num {
+    color: var(--cyan-neon);
+  }
+
+  .modal-description,
+  .modal-challenges {
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    color: #b5c7e0;
+  }
+
+  /* Tech tags */
+  .modal-tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  :global(.modal-chip) {
+    font-family: var(--font-pixel);
+    font-size: 0.58rem;
+    padding: 0.4rem 0.65rem;
+    background: #040714;
+    border: 1px solid #1a2952;
+    color: #9cb1ce;
+  }
+
+  .modal-status-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-tech);
+    font-size: 0.95rem;
+    color: #ffffff;
+  }
+
+  .status-square {
+    color: var(--cyan-neon);
+    font-size: 0.85rem;
+  }
+
+  .modal-action-wrap {
+    margin-top: auto;
+    padding-top: 1rem;
+  }
+
+  .btn-repo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.85rem 1.25rem;
+    border: 1px solid var(--pink-neon);
+    background: rgba(255, 0, 127, 0.05);
+    color: #ffffff;
+    text-decoration: none;
+    font-family: var(--font-pixel);
+    font-size: 0.68rem;
+    letter-spacing: 1px;
+    transition: all 0.2s ease;
+  }
+
+  .btn-repo:hover {
+    background: var(--pink-neon);
+    box-shadow: 0 0 15px rgba(255, 0, 127, 0.5);
+    transform: translateY(-2px);
+  }
+
+  .repo-code-symbol {
+    color: var(--pink-neon);
+  }
+  .btn-repo:hover .repo-code-symbol {
+    color: #ffffff;
+  }
+
+  @media (max-width: 768px) {
+    .modal-body-grid {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    .modal-col-right {
+      border-left: none;
+      padding-left: 0;
+      border-top: 1px solid rgba(24, 37, 76, 0.8);
+      padding-top: 1.5rem;
+    }
+  }
+</style>
