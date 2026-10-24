@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import '../styles/starfield.css';
 
 interface Props {
   title?: string;
@@ -31,6 +32,12 @@ const {
     />
   </head>
   <body>
+    <!-- Asymmetric Starfield Background (Natural Sky) -->
+    <div class="starfield" aria-hidden="true">
+      <div class="stars-sm"></div>
+      <div class="stars-md"></div>
+      <div class="stars-lg"></div>
+    </div>
     <slot />
   </body>
 </html>

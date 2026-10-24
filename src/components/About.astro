@@ -57,37 +57,74 @@ import { cvData } from '../data/cvData';
         </div>
       </div>
 
-      <!-- Right Column: Player Attributes Panel matching Image 2 -->
-      <div class="about-attributes-wrap">
-        <div class="attributes-panel cyber-card">
+      <!-- Right Column: Player Photo Card (Attributes hidden as requested) -->
+      <div class="about-photo-wrap">
+        <div class="photo-card cyber-card">
           <div class="panel-top-bar">
-            <span class="panel-label">ATRIBUTOS</span>
-            <span class="panel-level">NV. 05</span>
+            <span class="panel-label">PILOTO // PERFIL</span>
+            <span class="panel-status-online">
+              <span class="status-dot"></span>
+              ONLINE
+            </span>
           </div>
 
-          <!-- Stat Bars -->
-          <div class="stat-bars-list">
-            {cvData.attributes.map((attr) => (
-              <div class="stat-item">
-                <div class="stat-info">
-                  <span class="stat-name">{attr.name}</span>
-                  <span class="stat-percent">{attr.value}%</span>
-                </div>
-                <div class="stat-track">
-                  <div class="stat-fill" style={`width: ${attr.value}%`}></div>
-                </div>
-              </div>
-            ))}
+          <div class="photo-frame">
+            <div class="photo-corner-tl"></div>
+            <div class="photo-corner-br"></div>
+            <img 
+              src="/foto2_curriculum.jpeg" 
+              alt="Foto de Javier Méndez" 
+              class="player-photo" 
+            />
+            <div class="scanline-overlay"></div>
           </div>
 
-          <!-- Bottom Skill Tags -->
-          <div class="skills-tags-row">
-            {cvData.personalSkills.map((skill) => (
-              <span class="skill-tag-pill">{skill}</span>
-            ))}
+          <div class="photo-meta">
+            <div class="meta-tag-row">
+              <span class="badge-pink">ID: JAVIER MÉNDEZ</span>
+              <span class="badge-cyan">NV. 05 INGENIERÍA</span>
+            </div>
+            <p class="photo-caption">
+              Estudiante de Ingeniería en Informática. Enfocado en arquitectura de software, desarrollo frontend & backend y soluciones interactivas.
+            </p>
           </div>
         </div>
       </div>
+
+      {/* 
+        ============================================================
+        PANEL DE ATRIBUTOS (Temporalmente oculto/comentado a petición del usuario)
+        Puedes descomentar este bloque cuando quieras volver a mostrarlos:
+        ============================================================
+        <div class="about-attributes-wrap">
+          <div class="attributes-panel cyber-card">
+            <div class="panel-top-bar">
+              <span class="panel-label">ATRIBUTOS</span>
+              <span class="panel-level">NV. 05</span>
+            </div>
+
+            <div class="stat-bars-list">
+              {cvData.attributes.map((attr) => (
+                <div class="stat-item">
+                  <div class="stat-info">
+                    <span class="stat-name">{attr.name}</span>
+                    <span class="stat-percent">{attr.value}%</span>
+                  </div>
+                  <div class="stat-track">
+                    <div class="stat-fill" style={`width: ${attr.value}%`}></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div class="skills-tags-row">
+              {cvData.personalSkills.map((skill) => (
+                <span class="skill-tag-pill">{skill}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      */}
     </div>
   </div>
 </section>
@@ -169,6 +206,119 @@ import { cvData } from '../data/cvData';
     font-size: 0.88rem;
     color: #8da2c0;
     line-height: 1.45;
+  }
+
+  /* Photo Card Styling */
+  .about-photo-wrap {
+    display: flex;
+    justify-content: center;
+  }
+
+  .photo-card {
+    width: 100%;
+    max-width: 440px;
+    padding: 1.75rem;
+    box-shadow: 
+      8px 8px 0px rgba(77, 16, 90, 0.4),
+      0 0 25px rgba(0, 240, 255, 0.08);
+  }
+
+  .panel-status-online {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: var(--font-pixel);
+    font-size: 0.7rem;
+    color: var(--cyan-neon);
+    letter-spacing: 1px;
+  }
+
+  .status-dot {
+    width: 8px;
+    height: 8px;
+    background: var(--cyan-neon);
+    box-shadow: 0 0 8px var(--cyan-neon);
+    animation: blink 1.2s infinite;
+  }
+
+  .photo-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1.05;
+    overflow: hidden;
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    background: #060918;
+    margin-bottom: 1.25rem;
+    box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.6);
+  }
+
+  .player-photo {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center top;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  .photo-card:hover .player-photo {
+    transform: scale(1.03);
+  }
+
+  .photo-corner-tl {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 14px;
+    height: 14px;
+    border-top: 3px solid var(--pink-neon);
+    border-left: 3px solid var(--pink-neon);
+    z-index: 2;
+  }
+
+  .photo-corner-br {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 14px;
+    height: 14px;
+    border-bottom: 3px solid var(--cyan-neon);
+    border-right: 3px solid var(--cyan-neon);
+    z-index: 2;
+  }
+
+  .scanline-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      rgba(18, 16, 16, 0) 50%, 
+      rgba(0, 240, 255, 0.04) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .photo-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-top: 0.75rem;
+    border-top: 1px solid rgba(24, 37, 76, 0.8);
+  }
+
+  .meta-tag-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .photo-caption {
+    font-size: 0.92rem;
+    color: #9cb1ce;
+    line-height: 1.5;
   }
 
   /* Right Column: Panel */

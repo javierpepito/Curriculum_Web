@@ -38,9 +38,9 @@ body {
   min-height: 100vh;
   background-color: var(--bg-space);
   background-image: 
-    radial-gradient(circle, rgba(0, 240, 255, 0.22) 1px, transparent 1px);
-  background-size: 36px 36px;
-  background-position: 0 0;
+    radial-gradient(circle at 18% 22%, rgba(37, 9, 54, 0.45) 0%, transparent 45%),
+    radial-gradient(circle at 82% 78%, rgba(0, 40, 85, 0.38) 0%, transparent 50%);
+  background-attachment: fixed;
   position: relative;
   overflow-x: hidden;
 }
