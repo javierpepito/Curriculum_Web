@@ -6,6 +6,7 @@ import About from '../components/About.astro';
 import Missions from '../components/Missions.astro';
 import Contact from '../components/Contact.astro';
 import Footer from '../components/Footer.astro';
+import MissionModal from '../components/MissionModal.astro';
 import { cvData } from '../data/cvData';
 ---
 
@@ -20,14 +21,22 @@ import { cvData } from '../data/cvData';
     <Missions />
     <Contact />
     <Footer />
+
+    <!-- Shared Mission Modal (Placed at root to avoid horizontal transform clipping) -->
+    <MissionModal />
   </main>
 </Layout>
+
+<!-- GSAP Animation Script -->
+<script>
+  import '../scripts/gsap-animations.js';
+</script>
 
 <style>
   .page-wrapper {
     position: relative;
     z-index: 1;
     width: 100%;
-    min-height: 100vh;
   }
+
 </style>

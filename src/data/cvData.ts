@@ -25,7 +25,7 @@ export const cvData = {
     name: "Javier Andres Méndez Sepulveda",
     shortName: "JAVIER",
     lastName: "MÉNDEZ",
-    systemId: "JM.SYS",
+    systemId: "javierpepito",
     role: "ESTUDIANTE DE INGENIERÍA EN INFORMÁTICA",
     shortBio: "Construyendo soluciones, explorando tecnologías y convirtiendo ideas complejas en experiencias que funcionan.",
     fullBio: "Estudiante de ingeniería en informática apasionado por el aprendizaje, destaco por ser estructurado y organizado a la hora de resolver problemas, poseo conocimientos en tecnologías modernas, además, me caracterizo por ser responsable con mis tareas y tiempos, me adapto a diversas situaciones aprendiendo de forma autodidacta. Como diseñador de soluciones innovadoras busco conocer el mundo de la informática a profundidad.",

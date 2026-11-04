@@ -50,7 +50,26 @@ javiermendezsepulveda19@gmail.com
 - APP movil "Vamosjuntos" para reunir estudiantes al salir de la sede y que sea mas seguro (Desarrollado con equipo 4F y con flutter)
 - Arquitectura de datos para un Dashboard de conectividad digital (Desarrollado con equipo 4F)
 
-Cosas por hacer:
-- GSPA / Canvas 2D / ThreeJS
-- Efectos de sonido pixeleado y musica
-- Scroll vertical o en Z
+Estructura de AstroJS
+|
+|_ public
+|   |_ (Imagenes y recursos favicon o svg)
+|
+|_ src
+|   |_ assets
+|   |   |_ (svg)
+|   |  
+|   |_ components
+|   |   |_ (Son islas de html)
+|   |  
+|   |_ data
+|   |   |_ (Informacion que se usara en el html)
+|   |  
+|   |_ layouts
+|   |   |_ (Es como la plantilla principal)
+|   |  
+|   |_ pages
+|   |   |_ (Donde se encuentra index y une los componentes dentro del layout)
+|   |  
+|   |_ styles
+|   |   |_ (Se encuentran los estilos)

@@ -5,7 +5,7 @@ import { cvData } from '../data/cvData';
 <header class="cyber-header">
   <div class="site-container nav-container">
     <!-- Brand / Logo -->
-    <a href="#" class="brand-link">
+    <a href="/" class="brand-link">
       <div class="brand-diamond">
         <div class="inner-diamond"></div>
       </div>
@@ -14,10 +14,10 @@ import { cvData } from '../data/cvData';
 
     <!-- Navigation links -->
     <nav class="nav-menu">
-      <a href="#perfil" class="nav-item">PERFIL</a>
-      <a href="#tecnologias" class="nav-item">TECNOLOGÍAS</a>
-      <a href="#misiones" class="nav-item">MISIONES</a>
-      <a href="#contacto" class="nav-item">CONTACTO</a>
+      <a href="/#perfil" class="nav-item">PERFIL</a>
+      <a href="/#tecnologias" class="nav-item">TECNOLOGÍAS</a>
+      <a href="/proyectos" class="nav-item">MISIONES</a>
+      <a href="/#contacto" class="nav-item">CONTACTO</a>
     </nav>
 
     <!-- System status badge -->
@@ -41,8 +41,10 @@ import { cvData } from '../data/cvData';
 
 <style>
   .cyber-header {
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 100;
     background: rgba(6, 8, 20, 0.92);
     backdrop-filter: blur(10px);

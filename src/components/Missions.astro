@@ -1,9 +1,12 @@
 ---
 import { cvData } from '../data/cvData';
-import MissionModal from './MissionModal.astro';
+import MoonPlanet from './MoonPlanet.astro';
 ---
 
 <section class="missions-section" id="misiones">
+  <!-- Moon Planet (ship orbits this) -->
+  <MoonPlanet />
+  
   <div class="site-container">
     <!-- Section Header matching Image 3 & 5 -->
     <div class="section-header">
@@ -13,6 +16,41 @@ import MissionModal from './MissionModal.astro';
         <h2 class="section-title">MISIONES</h2>
         <div class="section-line"></div>
         <span class="section-stat">04 DESBLOQUEADAS</span>
+      </div>
+    </div>
+
+    <div class="projects-showcase cyber-card">
+      <div class="showcase-decor-corner-tr"></div>
+      
+      <div class="showcase-top-bar">
+        <span class="showcase-badge">
+          <span class="status-pulse-dot"></span>
+          ARCHIVO // REGISTRO DE MISIONES
+        </span>
+        <span class="showcase-status-code">SYS-04 // DESBLOQUEADAS</span>
+      </div>
+
+      <div class="showcase-content">
+        <h3 class="showcase-title">
+          <span class="pixel-solid-shadow">VER PROYECTOS</span>
+        </h3>
+        <p class="showcase-desc">
+          Explora el registro completo de misiones técnicas, arquitecturas construidas y soluciones interactivas desarrolladas a lo largo de mi formación.
+        </p>
+
+        <div class="showcase-categories-preview">
+          <span class="preview-tag"><span class="tag-num">01</span> IOT & EMBEBIDOS</span>
+          <span class="preview-tag"><span class="tag-num">02</span> DESARROLLO WEB</span>
+          <span class="preview-tag"><span class="tag-num">03</span> APPS MÓVILES</span>
+          <span class="preview-tag"><span class="tag-num">04</span> DATA SCIENCE</span>
+        </div>
+
+        <div class="showcase-btn-wrap">
+          <a href="/proyectos" class="btn-cyber-cyan btn-showcase-action">
+            <span>VER PROYECTOS EN VERTICAL</span>
+            <span class="btn-arrow">→</span>
+          </a>
+        </div>
       </div>
     </div>
 
@@ -118,9 +156,6 @@ import MissionModal from './MissionModal.astro';
       ))}
     </div>
   </div>
-
-  <!-- Shared Modal Component -->
-  <MissionModal />
 </section>
 
 <!-- Client Script to handle modal interaction -->
@@ -277,6 +312,136 @@ import MissionModal from './MissionModal.astro';
   .missions-section {
     padding: 4.5rem 0 5rem;
     position: relative;
+    overflow: visible;
+  }
+
+  .projects-showcase {
+    position: relative;
+    min-height: 220px;
+    margin: 1.5rem 0 3rem 210px;
+    padding: 2.25rem 2.5rem;
+    background: linear-gradient(145deg, rgba(13, 20, 48, 0.9) 0%, rgba(9, 14, 36, 0.95) 100%);
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 
+      8px 8px 0px rgba(77, 16, 90, 0.45),
+      0 0 30px rgba(0, 240, 255, 0.08);
+    backdrop-filter: blur(10px);
+  }
+
+  .showcase-decor-corner-tr {
+    position: absolute;
+    top: -1px;
+    right: -1px;
+    width: 14px;
+    height: 14px;
+    border-top: 2px solid var(--pink-neon);
+    border-right: 2px solid var(--pink-neon);
+    pointer-events: none;
+  }
+
+  .showcase-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px dashed rgba(24, 37, 76, 0.9);
+  }
+
+  .showcase-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--cyan-neon);
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    letter-spacing: 1px;
+  }
+
+  .status-pulse-dot {
+    width: 7px;
+    height: 7px;
+    background: var(--cyan-neon);
+    box-shadow: 0 0 8px var(--cyan-neon);
+    animation: blink 1.2s infinite;
+  }
+
+  .showcase-status-code {
+    font-family: var(--font-pixel);
+    font-size: 0.58rem;
+    color: var(--pink-neon);
+    letter-spacing: 1px;
+  }
+
+  .showcase-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .showcase-title {
+    font-family: var(--font-pixel);
+    font-size: clamp(1.4rem, 2.8vw, 2.2rem);
+    margin-bottom: 0.85rem;
+    color: #ffffff;
+  }
+
+  .showcase-desc {
+    max-width: 720px;
+    color: #9cb1ce;
+    font-size: 1.05rem;
+    line-height: 1.65;
+    margin-bottom: 1.5rem;
+    text-align: left;
+  }
+
+  .showcase-categories-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .preview-tag {
+    font-family: var(--font-pixel);
+    font-size: 0.62rem;
+    color: #cbd5e1;
+    background: rgba(13, 20, 48, 0.8);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+    padding: 0.4rem 0.75rem;
+    letter-spacing: 0.5px;
+  }
+
+  .tag-num {
+    color: var(--pink-neon);
+    margin-right: 0.25rem;
+  }
+
+  .showcase-btn-wrap {
+    display: flex;
+    align-items: center;
+  }
+
+  .btn-showcase-action {
+    padding: 0.9rem 1.6rem;
+    font-size: 0.82rem;
+    background: rgba(0, 240, 255, 0.12);
+    border: 1px solid var(--cyan-neon);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+  }
+
+  .btn-showcase-action:hover {
+    background: var(--cyan-neon);
+    color: var(--bg-space);
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.65);
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 1100px) {
+    .projects-showcase {
+      margin-left: 0;
+      padding: 2rem 1.5rem;
+    }
   }
 
   .missions-grid {
@@ -653,6 +818,11 @@ import MissionModal from './MissionModal.astro';
   }
 
   @media (max-width: 900px) {
+    .projects-showcase {
+      margin-left: 0;
+      min-height: 220px;
+    }
+
     .missions-grid {
       grid-template-columns: 1fr;
     }

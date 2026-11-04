@@ -1,0 +1,1089 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+import MissionModal from '../components/MissionModal.astro';
+import { cvData } from '../data/cvData';
+---
+
+<Layout 
+  title={`Misiones & Proyectos // ${cvData.personal.name}`}
+  description="Registro vertical de misiones y proyectos desarrollados en desarrollo web, IoT, soluciones móviles y ciencia de datos."
+>
+  <main class="page-wrapper projects-page">
+    <Navbar />
+
+    <section class="projects-hero-section">
+      <div class="site-container">
+        <!-- Breadcrumb / Back Button -->
+        <div class="projects-breadcrumb">
+          <a href="/#misiones" class="btn-back-link">
+            <span class="back-arrow">&lt;</span>
+            <span>VOLVER AL INICIO</span>
+          </a>
+          <span class="breadcrumb-sep">//</span>
+          <span class="breadcrumb-current">BITÁCORA VERTICAL DE MISIONES</span>
+        </div>
+
+        <!-- Section Header -->
+        <div class="section-header">
+          <span class="badge-pink">EXPEDIENTES TÁCTICOS COMPLETOS</span>
+          <div class="section-title-wrap">
+            <span class="section-number">03</span>
+            <h1 class="section-title">
+              <span class="pixel-solid-shadow">MISIONES</span>
+              <span class="pixel-outline-cyan">& PROYECTOS</span>
+            </h1>
+            <div class="section-line"></div>
+          </div>
+          <p class="projects-lead">
+            Registro cronológico y detallado de todas las misiones técnicas, arquitecturas construidas y desafíos resueltos a lo largo de mi formación.
+          </p>
+        </div>
+
+        <!-- Tactical Stats Bar -->
+        <div class="tactical-stats-bar cyber-card">
+          <div class="stat-cell">
+            <span class="stat-cell-label">MISIONES REGISTRADAS</span>
+            <span class="stat-cell-value">04 COMPLETADAS</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-cell">
+            <span class="stat-cell-label">CATEGORÍAS</span>
+            <span class="stat-cell-value">IOT · WEB · MOBILE · DATA</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat-cell">
+            <span class="stat-cell-label">MODO DE VISTA</span>
+            <span class="stat-cell-value text-cyan">VERTICAL // BITÁCORA</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Vertical Missions Timeline Section -->
+    <section class="vertical-missions-section">
+      <div class="site-container">
+        <div class="vertical-timeline-container">
+          <!-- Central neon timeline spine -->
+          <div class="timeline-vertical-spine" aria-hidden="true"></div>
+
+          <div class="vertical-missions-list">
+            {cvData.missions.map((mission, index) => (
+              <article class="vertical-mission-card cyber-card" data-mission-id={mission.id}>
+                <!-- Timeline node marker -->
+                <div class="timeline-node">
+                  <span class="node-number">{mission.number}</span>
+                  <div class="node-ring"></div>
+                </div>
+
+                <!-- Top Mission Meta Bar -->
+                <div class="card-top-bar">
+                  <div class="meta-left">
+                    <span class="mission-num-badge">MISIÓN {mission.number}</span>
+                    <span class="mission-type-tag">
+                      {mission.type === 'iot' && 'IOT & SISTEMAS EMBEBIDOS'}
+                      {mission.type === 'web' && 'DESARROLLO WEB & FRONTEND'}
+                      {mission.type === 'mobile' && 'SOLUCIONES MÓVILES'}
+                      {mission.type === 'data' && 'DATA SCIENCE & ANALYTICS'}
+                    </span>
+                  </div>
+                  <div class="meta-right">
+                    <span class="status-indicator-tag">
+                      <span class="status-dot-green"></span>
+                      {mission.status}
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Main Card Body: 2 Columns (Visual + Intel) -->
+                <div class="card-main-grid">
+                  <!-- Column 1: Pixel Wireframe Visual -->
+                  <div class="mission-visual-box">
+                    <div class="wireframe-plane"></div>
+                    
+                    {mission.type === 'iot' && (
+                      <div class="graphic-element graphic-iot">
+                        <div class="circuit-board">
+                          <div class="chip-core"></div>
+                          <div class="circuit-wire wire-left">
+                            <span class="node pink-node"></span>
+                          </div>
+                          <div class="circuit-wire wire-right">
+                            <span class="node cyan-node"></span>
+                          </div>
+                          <span class="node floating-node-1"></span>
+                        </div>
+                      </div>
+                    )}
+
+                    {mission.type === 'web' && (
+                      <div class="graphic-element graphic-web">
+                        <div class="browser-mockup">
+                          <div class="browser-bar">
+                            <span class="bar-dot pink-dot"></span>
+                            <span class="bar-dot yellow-dot"></span>
+                          </div>
+                          <div class="browser-content">
+                            <div class="content-block-left"></div>
+                            <div class="content-block-cyan"></div>
+                            <div class="content-lines">
+                              <span class="line-mock"></span>
+                              <span class="line-mock short"></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+
+                    {mission.type === 'mobile' && (
+                      <div class="graphic-element graphic-space">
+                        <div class="space-field">
+                          <div class="space-ship-cursor"></div>
+                          <div class="trajectory-line"></div>
+                          <div class="target-planet"></div>
+                        </div>
+                      </div>
+                    )}
+
+                    {mission.type === 'data' && (
+                      <div class="graphic-element graphic-data">
+                        <div class="chart-container">
+                          <div class="chart-line-trend"></div>
+                          <div class="chart-bars">
+                            <div class="bar bar-cyan"></div>
+                            <div class="bar bar-pink"></div>
+                            <div class="bar bar-yellow"></div>
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  <!-- Column 2: Mission Deep-Dive Info -->
+                  <div class="mission-intel-wrap">
+                    <h2 class="mission-heading font-pixel">{mission.title}</h2>
+                    <p class="mission-short-summary">{mission.shortDesc}</p>
+
+                    <div class="intel-block">
+                      <span class="intel-block-label">OBJETIVO & ALCANCE:</span>
+                      <p class="intel-block-text">{mission.fullDesc}</p>
+                    </div>
+
+                    <div class="challenges-highlight-box">
+                      <div class="highlight-header">
+                        <span class="highlight-tag">DESAFÍO TÉCNICO RESUELTO</span>
+                      </div>
+                      <p class="highlight-text">{mission.challenges}</p>
+                    </div>
+
+                    <!-- Tech Stack Badges -->
+                    <div class="tech-stack-row">
+                      <span class="tech-stack-label">STACK:</span>
+                      <div class="tech-pills-list">
+                        {mission.technologies.map((tech) => (
+                          <span class="tech-chip">{tech}</span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="mission-actions-row">
+                      <button
+                        type="button"
+                        class="btn-open-mission btn-cyber-cyan font-pixel"
+                        data-mission={JSON.stringify(mission)}
+                      >
+                        <span>EXPEDIENTE COMPLETO</span>
+                        <span class="btn-arrow">&gt;</span>
+                      </button>
+
+                      {mission.repoUrl && mission.repoUrl !== '#' && (
+                        <a 
+                          href={mission.repoUrl} 
+                          target="_blank" 
+                          rel="noopener noreferrer"
+                          class="btn-cyber-pink font-pixel"
+                        >
+                          <span>VER REPOSITORIO</span>
+                          <span class="btn-arrow">↗</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <!-- Back to Top / Next Step Box -->
+        <div class="page-footer-nav cyber-card">
+          <div class="footer-nav-text">
+            <span class="badge-cyan">FIN DEL REGISTRO // MISIONES</span>
+            <h3>¿TIENES UNA NUEVA MISIÓN EN MENTE?</h3>
+            <p>Disponible para prácticas, proyectos innovadores y colaboraciones técnicas.</p>
+          </div>
+          <div class="footer-nav-actions">
+            <a href="/#contacto" class="btn-cyber-pink">
+              <span>CONTACTAR AL PILOTO</span>
+              <span class="btn-arrow">→</span>
+            </a>
+            <a href="/#inicio" class="btn-cyber-cyan">
+              <span>VOLVER AL INICIO</span>
+              <span class="btn-arrow">↑</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <Footer />
+
+    <!-- Shared Mission Modal -->
+    <MissionModal />
+  </main>
+</Layout>
+
+<!-- Modal Setup Script -->
+<script>
+  import { cvData } from '../data/cvData';
+
+  function setupMissionModal() {
+    const modalBackdrop = document.getElementById('mission-modal');
+    const closeTrigger = document.getElementById('modal-close-trigger');
+    const titleEl = document.getElementById('modal-mission-title');
+    const numEl = document.getElementById('modal-mission-number');
+    const descEl = document.getElementById('modal-mission-desc');
+    const challengesEl = document.getElementById('modal-mission-challenges');
+    const techsEl = document.getElementById('modal-mission-techs');
+    const statusEl = document.getElementById('modal-mission-status');
+    const repoEl = document.getElementById('modal-mission-repo');
+    const graphicEl = document.getElementById('modal-graphic-content');
+
+    if (!modalBackdrop) return;
+
+    function openModal(mission: any) {
+      if (titleEl) titleEl.textContent = mission.title;
+      if (numEl) numEl.textContent = `MISIÓN ${mission.number}`;
+      if (descEl) descEl.textContent = mission.fullDesc;
+      if (challengesEl) challengesEl.textContent = mission.challenges;
+      if (statusEl) statusEl.textContent = mission.status;
+
+      if (techsEl) {
+        techsEl.innerHTML = '';
+        mission.technologies.forEach((tech: string) => {
+          const span = document.createElement('span');
+          span.className = 'modal-tech-tag';
+          span.textContent = tech;
+          techsEl.appendChild(span);
+        });
+      }
+
+      if (repoEl) {
+        if (mission.repoUrl && mission.repoUrl !== '#') {
+          repoEl.setAttribute('href', mission.repoUrl);
+          (repoEl as HTMLElement).style.display = 'inline-flex';
+        } else {
+          (repoEl as HTMLElement).style.display = 'none';
+        }
+      }
+
+      if (graphicEl) {
+        let graphicHtml = '';
+        if (mission.type === 'iot') {
+          graphicHtml = `
+            <div class="circuit-board" style="transform: scale(1.2);">
+              <div class="chip-core"></div>
+              <div class="circuit-wire wire-left"><span class="node pink-node"></span></div>
+              <div class="circuit-wire wire-right"><span class="node cyan-node"></span></div>
+              <span class="node floating-node-1"></span>
+            </div>
+          `;
+        } else if (mission.type === 'web') {
+          graphicHtml = `
+            <div class="browser-mockup" style="transform: scale(1.15);">
+              <div class="browser-bar">
+                <span class="bar-dot pink-dot"></span>
+                <span class="bar-dot yellow-dot"></span>
+              </div>
+              <div class="browser-content">
+                <div class="content-block-left"></div>
+                <div class="content-block-cyan"></div>
+                <div class="content-lines">
+                  <span class="line-mock"></span>
+                  <span class="line-mock short"></span>
+                </div>
+              </div>
+            </div>
+          `;
+        } else if (mission.type === 'mobile') {
+          graphicHtml = `
+            <div class="space-field" style="transform: scale(1.2);">
+              <div class="space-ship-cursor"></div>
+              <div class="trajectory-line"></div>
+              <div class="target-planet"></div>
+            </div>
+          `;
+        } else {
+          graphicHtml = `
+            <div class="chart-container" style="transform: scale(1.2);">
+              <div class="chart-line-trend"></div>
+              <div class="chart-bars">
+                <div class="bar bar-cyan"></div>
+                <div class="bar bar-pink"></div>
+                <div class="bar bar-yellow"></div>
+              </div>
+            </div>
+          `;
+        }
+        graphicEl.innerHTML = graphicHtml;
+      }
+
+      modalBackdrop.classList.add('active');
+      modalBackdrop.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal() {
+      modalBackdrop?.classList.remove('active');
+      modalBackdrop?.setAttribute('aria-hidden', 'true');
+      document.body.style.overflow = '';
+    }
+
+    // Attach click events on "EXPEDIENTE COMPLETO" buttons
+    const openBtns = document.querySelectorAll('.btn-open-mission');
+    openBtns.forEach((btn) => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const dataStr = (btn as HTMLElement).dataset.mission;
+        if (dataStr) {
+          try {
+            const missionData = JSON.parse(dataStr);
+            openModal(missionData);
+          } catch (err) {
+            console.error('Error parsing mission data:', err);
+          }
+        }
+      });
+    });
+
+    closeTrigger?.addEventListener('click', closeModal);
+    modalBackdrop.addEventListener('click', (e) => {
+      if (e.target === modalBackdrop) closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modalBackdrop.classList.contains('active')) {
+        closeModal();
+      }
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupMissionModal);
+  } else {
+    setupMissionModal();
+  }
+</script>
+
+<style>
+  .projects-page {
+    padding-top: 5.5rem;
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+  }
+
+  /* Hero Section */
+  .projects-hero-section {
+    padding: 3rem 0 2rem;
+  }
+
+  .projects-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+    font-family: var(--font-pixel);
+    font-size: 0.68rem;
+  }
+
+  .btn-back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--cyan-neon);
+    text-decoration: none;
+    padding: 0.45rem 0.85rem;
+    background: rgba(0, 240, 255, 0.08);
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    transition: all 0.2s ease;
+  }
+
+  .btn-back-link:hover {
+    background: var(--cyan-neon);
+    color: var(--bg-space);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.5);
+    transform: translateX(-3px);
+  }
+
+  .back-arrow {
+    font-size: 0.8rem;
+  }
+
+  .breadcrumb-sep {
+    color: var(--pink-neon);
+    opacity: 0.7;
+  }
+
+  .breadcrumb-current {
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .projects-lead {
+    max-width: 720px;
+    margin-top: 1.25rem;
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: #cad8ec;
+  }
+
+  /* Tactical Stats Bar */
+  .tactical-stats-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 1.25rem 2rem;
+    margin-top: 2.25rem;
+    background: rgba(9, 14, 36, 0.8);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 240, 255, 0.25);
+  }
+
+  .stat-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .stat-cell-label {
+    font-family: var(--font-pixel);
+    font-size: 0.58rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+  }
+
+  .stat-cell-value {
+    font-family: var(--font-pixel);
+    font-size: 0.75rem;
+    color: #ffffff;
+    letter-spacing: 0.5px;
+  }
+
+  .text-cyan {
+    color: var(--cyan-neon);
+  }
+
+  .stat-divider {
+    width: 1px;
+    height: 32px;
+    background: rgba(24, 37, 76, 0.9);
+  }
+
+  /* Vertical Timeline */
+  .vertical-missions-section {
+    padding: 2.5rem 0 6rem;
+  }
+
+  .vertical-timeline-container {
+    position: relative;
+    padding-left: 2rem;
+  }
+
+  .timeline-vertical-spine {
+    position: absolute;
+    top: 2rem;
+    bottom: 2rem;
+    left: 2rem;
+    width: 2px;
+    background: linear-gradient(
+      180deg, 
+      rgba(0, 240, 255, 0.8) 0%, 
+      rgba(255, 0, 127, 0.6) 50%, 
+      rgba(0, 240, 255, 0.8) 100%
+    );
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.4);
+    z-index: 1;
+  }
+
+  .vertical-missions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 3.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  /* Vertical Mission Card */
+  .vertical-mission-card {
+    position: relative;
+    margin-left: 2.5rem;
+    padding: 2rem 2.25rem;
+    background: linear-gradient(135deg, rgba(13, 20, 48, 0.92) 0%, rgba(9, 14, 36, 0.96) 100%);
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    box-shadow: 
+      8px 8px 0px rgba(77, 16, 90, 0.45),
+      0 0 25px rgba(0, 240, 255, 0.08);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .vertical-mission-card:hover {
+    transform: translateX(4px);
+    border-color: rgba(0, 240, 255, 0.65);
+    box-shadow: 
+      8px 8px 0px rgba(77, 16, 90, 0.65),
+      0 0 35px rgba(0, 240, 255, 0.18);
+  }
+
+  /* Timeline Node */
+  .timeline-node {
+    position: absolute;
+    top: 2rem;
+    left: -4.5rem;
+    width: 40px;
+    height: 40px;
+    background: #060918;
+    border: 2px solid var(--cyan-neon);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+    z-index: 3;
+  }
+
+  .node-number {
+    font-family: var(--font-pixel);
+    font-size: 0.72rem;
+    color: var(--cyan-neon);
+  }
+
+  .node-ring {
+    position: absolute;
+    inset: -5px;
+    border: 1px dashed rgba(255, 0, 127, 0.5);
+    animation: rotateRing 14s linear infinite;
+  }
+
+  @keyframes rotateRing {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  /* Card Top Bar */
+  .card-top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 0.85rem;
+    border-bottom: 1px solid rgba(24, 37, 76, 0.8);
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .meta-left {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .mission-num-badge {
+    font-family: var(--font-pixel);
+    font-size: 0.65rem;
+    color: var(--cyan-neon);
+    background: rgba(0, 240, 255, 0.1);
+    border: 1px solid var(--cyan-neon);
+    padding: 0.35rem 0.65rem;
+    letter-spacing: 1px;
+  }
+
+  .mission-type-tag {
+    font-family: var(--font-pixel);
+    font-size: 0.62rem;
+    color: var(--pink-neon);
+    letter-spacing: 0.5px;
+  }
+
+  .status-indicator-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-family: var(--font-pixel);
+    font-size: 0.62rem;
+    color: var(--cyan-neon);
+    letter-spacing: 1px;
+  }
+
+  .status-dot-green {
+    width: 7px;
+    height: 7px;
+    background: #00ff88;
+    box-shadow: 0 0 8px #00ff88;
+    border-radius: 50%;
+  }
+
+  /* Main Grid */
+  .card-main-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 2.25rem;
+    align-items: start;
+  }
+
+  /* Visual Graphic Frame (reusing 3d perspective boxes from Missions) */
+  .mission-visual-box {
+    position: relative;
+    height: 220px;
+    background: #050714;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: inset 0 0 25px rgba(0, 0, 0, 0.8);
+  }
+
+  .wireframe-plane {
+    position: absolute;
+    bottom: -15px;
+    left: -20px;
+    right: -20px;
+    height: 90px;
+    background-image: 
+      linear-gradient(rgba(0, 240, 255, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 240, 255, 0.15) 1px, transparent 1px);
+    background-size: 16px 16px;
+    transform: perspective(140px) rotateX(60deg);
+    pointer-events: none;
+  }
+
+  .graphic-element {
+    position: relative;
+    z-index: 2;
+    transform: scale(1.1);
+  }
+
+  /* IoT Graphics */
+  .circuit-board {
+    position: relative;
+    width: 90px;
+    height: 80px;
+    background: rgba(10, 20, 50, 0.9);
+    border: 1px solid var(--cyan-neon);
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.3);
+  }
+
+  .chip-core {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 28px;
+    height: 28px;
+    background: #101c40;
+    border: 1px solid var(--pink-neon);
+    box-shadow: 0 0 8px rgba(255, 0, 127, 0.4);
+  }
+
+  .circuit-wire {
+    position: absolute;
+    top: 50%;
+    height: 2px;
+    background: var(--cyan-neon);
+  }
+
+  .wire-left {
+    left: 0;
+    width: 25px;
+  }
+
+  .wire-right {
+    right: 0;
+    width: 25px;
+  }
+
+  .node {
+    position: absolute;
+    width: 6px;
+    height: 6px;
+    transform: translateY(-2px);
+  }
+
+  .pink-node {
+    background: var(--pink-neon);
+    box-shadow: 0 0 6px var(--pink-neon);
+    left: 4px;
+  }
+
+  .cyan-node {
+    background: var(--cyan-neon);
+    box-shadow: 0 0 6px var(--cyan-neon);
+    right: 4px;
+  }
+
+  .floating-node-1 {
+    top: 15px;
+    right: 18px;
+    background: var(--yellow-accent);
+    box-shadow: 0 0 6px var(--yellow-accent);
+  }
+
+  /* Web Graphics */
+  .browser-mockup {
+    width: 140px;
+    height: 95px;
+    background: #090e24;
+    border: 1px solid var(--cyan-neon);
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 14px rgba(0, 240, 255, 0.25);
+  }
+
+  .browser-bar {
+    height: 14px;
+    background: #141c40;
+    border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding-left: 6px;
+  }
+
+  .bar-dot {
+    width: 4px;
+    height: 4px;
+  }
+
+  .pink-dot { background: var(--pink-neon); }
+  .yellow-dot { background: var(--yellow-accent); }
+
+  .browser-content {
+    flex: 1;
+    padding: 8px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .content-block-left {
+    width: 32px;
+    height: 100%;
+    background: rgba(255, 0, 127, 0.2);
+    border: 1px solid var(--pink-neon);
+  }
+
+  .content-block-cyan {
+    flex: 1;
+    height: 24px;
+    background: rgba(0, 240, 255, 0.2);
+    border: 1px solid var(--cyan-neon);
+  }
+
+  .content-lines {
+    position: absolute;
+    bottom: 12px;
+    right: 12px;
+    width: 65px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .line-mock {
+    height: 3px;
+    background: rgba(255, 255, 255, 0.3);
+    width: 100%;
+  }
+
+  .line-mock.short {
+    width: 60%;
+  }
+
+  /* Mobile Space Graphics */
+  .space-field {
+    position: relative;
+    width: 120px;
+    height: 80px;
+  }
+
+  .space-ship-cursor {
+    position: absolute;
+    bottom: 8px;
+    left: 15px;
+    width: 12px;
+    height: 12px;
+    background: var(--pink-neon);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    box-shadow: 0 0 8px var(--pink-neon);
+  }
+
+  .trajectory-line {
+    position: absolute;
+    top: 20px;
+    left: 25px;
+    width: 60px;
+    height: 40px;
+    border-top: 1px dashed rgba(0, 240, 255, 0.6);
+    border-right: 1px dashed rgba(0, 240, 255, 0.6);
+    transform: rotate(20deg);
+  }
+
+  .target-planet {
+    position: absolute;
+    top: 10px;
+    right: 12px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #1c2766;
+    border: 1px solid var(--cyan-neon);
+    box-shadow: 0 0 10px var(--cyan-neon);
+  }
+
+  /* Data Graphics */
+  .chart-container {
+    position: relative;
+    width: 120px;
+    height: 80px;
+    border-left: 1px solid var(--cyan-neon);
+    border-bottom: 1px solid var(--cyan-neon);
+    display: flex;
+    align-items: flex-end;
+    padding-left: 10px;
+  }
+
+  .chart-line-trend {
+    position: absolute;
+    top: 15px;
+    left: 0;
+    right: 10px;
+    height: 1px;
+    background: var(--pink-neon);
+    box-shadow: 0 0 6px var(--pink-neon);
+    transform: rotate(-18deg);
+    transform-origin: left bottom;
+  }
+
+  .chart-bars {
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+    height: 60px;
+  }
+
+  .bar {
+    width: 12px;
+  }
+
+  .bar-cyan {
+    height: 38px;
+    background: var(--cyan-neon);
+    box-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+  }
+
+  .bar-pink {
+    height: 54px;
+    background: var(--pink-neon);
+    box-shadow: 0 0 8px rgba(255, 0, 127, 0.5);
+  }
+
+  .bar-yellow {
+    height: 26px;
+    background: var(--yellow-accent);
+    box-shadow: 0 0 8px rgba(255, 234, 0, 0.5);
+  }
+
+  /* Mission Intel Column */
+  .mission-intel-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+  }
+
+  .mission-heading {
+    font-size: 1.25rem;
+    color: #ffffff;
+    line-height: 1.35;
+    letter-spacing: -0.5px;
+  }
+
+  .mission-short-summary {
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #cad8ec;
+  }
+
+  .intel-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .intel-block-label {
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    color: var(--cyan-neon);
+    letter-spacing: 1px;
+  }
+
+  .intel-block-text {
+    font-size: 0.95rem;
+    line-height: 1.55;
+    color: #8da2c0;
+  }
+
+  .challenges-highlight-box {
+    background: rgba(13, 20, 48, 0.6);
+    border: 1px solid rgba(24, 37, 76, 0.8);
+    border-left: 3px solid var(--pink-neon);
+    padding: 0.85rem 1.15rem;
+  }
+
+  .highlight-header {
+    margin-bottom: 0.35rem;
+  }
+
+  .highlight-tag {
+    font-family: var(--font-pixel);
+    font-size: 0.58rem;
+    color: var(--pink-neon);
+    letter-spacing: 1px;
+  }
+
+  .highlight-text {
+    font-size: 0.92rem;
+    color: #cbd5e1;
+    line-height: 1.5;
+  }
+
+  /* Tech Stack */
+  .tech-stack-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    flex-wrap: wrap;
+  }
+
+  .tech-stack-label {
+    font-family: var(--font-pixel);
+    font-size: 0.6rem;
+    color: var(--text-muted);
+  }
+
+  .tech-pills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tech-chip {
+    font-family: var(--font-pixel);
+    font-size: 0.55rem;
+    padding: 0.3rem 0.6rem;
+    background: rgba(0, 240, 255, 0.05);
+    border: 1px solid rgba(0, 240, 255, 0.35);
+    color: #cbd5e1;
+  }
+
+  /* Action Buttons */
+  .mission-actions-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 0.5rem;
+    flex-wrap: wrap;
+  }
+
+  /* Page Footer Nav Box */
+  .page-footer-nav {
+    margin-top: 5rem;
+    padding: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    background: linear-gradient(135deg, rgba(13, 20, 48, 0.9) 0%, rgba(9, 14, 36, 0.95) 100%);
+    border: 1px solid rgba(0, 240, 255, 0.4);
+    box-shadow: 8px 8px 0px rgba(77, 16, 90, 0.45);
+    flex-wrap: wrap;
+  }
+
+  .footer-nav-text {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .footer-nav-text h3 {
+    font-family: var(--font-pixel);
+    font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+    color: #ffffff;
+  }
+
+  .footer-nav-text p {
+    color: #9cb1ce;
+    font-size: 1rem;
+  }
+
+  .footer-nav-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 950px) {
+    .card-main-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .mission-visual-box {
+      height: 180px;
+    }
+
+    .tactical-stats-bar {
+      flex-direction: column;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .stat-divider {
+      display: none;
+    }
+
+    .timeline-vertical-spine {
+      display: none;
+    }
+
+    .vertical-timeline-container {
+      padding-left: 0;
+    }
+
+    .vertical-mission-card {
+      margin-left: 0;
+      padding: 1.5rem;
+    }
+
+    .timeline-node {
+      position: static;
+      margin-bottom: 1rem;
+    }
+
+    .page-footer-nav {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

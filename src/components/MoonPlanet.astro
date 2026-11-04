@@ -1,0 +1,293 @@
+---
+// Moon planet and orbit visual for the Missions section
+---
+
+<div class="moon-scene" id="moon-scene" aria-hidden="true">
+  <!-- Tactical satellite label -->
+  <div class="moon-coord coord-top">
+    <span>LUNA // BASE 02</span>
+  </div>
+
+  <!-- Orbit ring around the moon with a tilted elliptical path -->
+  <svg class="moon-orbit-svg" viewBox="0 0 340 340">
+    <ellipse cx="170" cy="170" rx="145" ry="65" class="moon-orbit-path" />
+  </svg>
+  
+  <!-- The Pixel Moon -->
+  <div class="pixel-moon">
+    <div class="moon-glow"></div>
+    <div class="moon-surface">
+      <!-- Craters Pixel Art -->
+      <div class="crater crater-1"></div>
+      <div class="crater crater-2"></div>
+      <div class="crater crater-3"></div>
+      <div class="crater crater-4"></div>
+      <div class="crater crater-5"></div>
+    </div>
+    <div class="moon-shadow-overlay"></div>
+  </div>
+
+  <!-- Moon Orbiting Ship -->
+  <div class="moon-rocket-orbit">
+    <div class="pixel-ship-flyer">
+      <div class="pixel-ship-inner">
+        <img 
+          src="/nave_pixel.svg" 
+          alt="Nave espacial en órbita lunar" 
+          class="custom-moon-ship" 
+        />
+        <div class="moon-ship-thruster"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="moon-coord coord-bottom">
+    <span>ORBITA ESTABLE</span>
+  </div>
+</div>
+
+<style>
+  .moon-scene {
+    position: absolute;
+    top: 8rem;
+    left: 1rem;
+    width: 240px;
+    height: 240px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    pointer-events: none;
+  }
+
+  .moon-coord {
+    font-family: var(--font-pixel, monospace);
+    font-size: 0.58rem;
+    color: var(--cyan-neon, #00f0ff);
+    letter-spacing: 1px;
+    opacity: 0.85;
+    text-shadow: 0 0 8px rgba(0, 240, 255, 0.5);
+  }
+
+  .coord-top {
+    margin-bottom: 0.35rem;
+    align-self: flex-start;
+  }
+
+  .coord-bottom {
+    margin-top: 0.35rem;
+    align-self: flex-end;
+  }
+
+  .moon-orbit-svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 340px;
+    height: 340px;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    pointer-events: none;
+  }
+
+  .moon-orbit-path {
+    fill: none;
+    stroke: rgba(0, 240, 255, 0.25);
+    stroke-width: 1.5;
+    stroke-dasharray: 4 6;
+  }
+
+  .pixel-moon {
+    position: relative;
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    background: #8b9bb4;
+    overflow: hidden;
+    box-shadow: 
+      0 0 30px rgba(0, 240, 255, 0.25),
+      0 0 50px rgba(180, 200, 255, 0.15),
+      inset -14px -14px 0px rgba(18, 24, 54, 0.7);
+    border: 2px solid rgba(0, 240, 255, 0.75);
+    image-rendering: pixelated;
+  }
+
+  .moon-glow {
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    box-shadow: inset 0 0 20px rgba(0, 240, 255, 0.25);
+    pointer-events: none;
+  }
+
+  .moon-surface {
+    position: absolute;
+    inset: 0;
+  }
+
+  /* Pixel craters with cyber tint */
+  .crater {
+    position: absolute;
+    background: #5b6b88;
+    box-shadow: inset 2px 2px 0px rgba(15, 20, 45, 0.7);
+  }
+
+  .crater-1 {
+    top: 24px;
+    left: 20px;
+    width: 26px;
+    height: 22px;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 20%, 100% 80%, 80% 100%, 20% 100%, 0% 80%, 0% 20%);
+  }
+
+  .crater-2 {
+    top: 65px;
+    right: 22px;
+    width: 20px;
+    height: 18px;
+    clip-path: polygon(25% 0%, 75% 0%, 100% 25%, 100% 75%, 75% 100%, 25% 100%, 0% 75%, 0% 25%);
+  }
+
+  .crater-3 {
+    bottom: 20px;
+    left: 36px;
+    width: 28px;
+    height: 20px;
+    clip-path: polygon(15% 0%, 85% 0%, 100% 30%, 100% 70%, 85% 100%, 15% 100%, 0% 70%, 0% 30%);
+  }
+
+  .crater-4 {
+    top: 40px;
+    left: 56px;
+    width: 14px;
+    height: 12px;
+    background: #475470;
+  }
+
+  .crater-5 {
+    bottom: 45px;
+    right: 32px;
+    width: 12px;
+    height: 10px;
+    background: #475470;
+  }
+
+  .moon-shadow-overlay {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 52%;
+    height: 100%;
+    background: rgba(8, 12, 38, 0.5);
+    pointer-events: none;
+  }
+
+  /* Moon Ship Orbiting System */
+  .moon-rocket-orbit {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 340px;
+    height: 340px;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    pointer-events: none;
+    z-index: 6;
+  }
+
+  .pixel-ship-flyer {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 34px;
+    height: 34px;
+    offset-path: path("M 25,170 a 145,65 0 1,0 290,0 a 145,65 0 1,0 -290,0");
+    offset-rotate: auto 90deg;
+    animation: moonOrbitShipFly 9s linear infinite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @keyframes moonOrbitShipFly {
+    0% {
+      offset-distance: 0%;
+      transform: scale(0.85);
+      filter: brightness(0.85);
+      z-index: 3;
+    }
+    25% {
+      transform: scale(1.05);
+      filter: brightness(1);
+      z-index: 7;
+    }
+    50% {
+      offset-distance: 50%;
+      transform: scale(1.18);
+      filter: brightness(1.1);
+      z-index: 8;
+    }
+    75% {
+      transform: scale(1.02);
+      filter: brightness(1);
+      z-index: 7;
+    }
+    100% {
+      offset-distance: 100%;
+      transform: scale(0.85);
+      filter: brightness(0.85);
+      z-index: 3;
+    }
+  }
+
+  .pixel-ship-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .custom-moon-ship {
+    width: 34px;
+    height: 34px;
+    image-rendering: pixelated;
+    filter: drop-shadow(0 0 8px rgba(0, 240, 255, 0.85));
+    animation: shipPulse 2s ease-in-out infinite alternate;
+  }
+
+  .moon-ship-thruster {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 8px;
+    height: 10px;
+    background: radial-gradient(circle, var(--yellow-accent, #ffea00) 0%, #ff007f 70%, transparent 100%);
+    clip-path: polygon(100% 0%, 0% 0%, 50% 100%);
+    animation: thrusterFlicker 0.2s infinite alternate;
+    pointer-events: none;
+  }
+
+  @keyframes shipPulse {
+    0% { transform: scale(0.96); filter: drop-shadow(0 0 6px rgba(0, 240, 255, 0.6)); }
+    100% { transform: scale(1.04); filter: drop-shadow(0 0 12px rgba(0, 240, 255, 0.95)); }
+  }
+
+  @keyframes thrusterFlicker {
+    0% { transform: translateX(-50%) scaleY(0.7); opacity: 0.8; }
+    100% { transform: translateX(-50%) scaleY(1.3); opacity: 1; filter: drop-shadow(0 0 6px #ff007f); }
+  }
+
+  @media (max-width: 1100px) {
+    .moon-scene {
+      top: 1rem;
+      right: 1rem;
+      transform: scale(0.85);
+    }
+  }
+
+  @media (max-width: 900px) {
+    .moon-scene {
+      display: none;
+    }
+  }
+</style>
