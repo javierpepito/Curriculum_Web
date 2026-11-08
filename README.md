@@ -44,32 +44,9 @@ javiermendezsepulveda19@gmail.com
 - Boostrap
 - Pentaho CE
 
-### Proyectos
-- Riego automatico (app movil y bomba de agua con ESP32, conectado usando internet IOT)
-- Pagina Web para un holding bursatil como Nuam con django (Desarrollado con equipo 4F) 
-- APP movil "Vamosjuntos" para reunir estudiantes al salir de la sede y que sea mas seguro (Desarrollado con equipo 4F y con flutter)
-- Arquitectura de datos para un Dashboard de conectividad digital (Desarrollado con equipo 4F)
-
-Estructura de AstroJS
-|
-|_ public
-|   |_ (Imagenes y recursos favicon o svg)
-|
-|_ src
-|   |_ assets
-|   |   |_ (svg)
-|   |  
-|   |_ components
-|   |   |_ (Son islas de html)
-|   |  
-|   |_ data
-|   |   |_ (Informacion que se usara en el html)
-|   |  
-|   |_ layouts
-|   |   |_ (Es como la plantilla principal)
-|   |  
-|   |_ pages
-|   |   |_ (Donde se encuentra index y une los componentes dentro del layout)
-|   |  
-|   |_ styles
-|   |   |_ (Se encuentran los estilos)
+### Cosas pendientes
+- Corregir espacios entre secciones, usando padding.
+- Corregir ubicacion de luna en gsap-animation.js.
+- Simplificar las cards de proyectos, ya que se usara el modal para mas detalles.
+- Seguir con el juego.
+- Poner las animaciones en toda la pagina.

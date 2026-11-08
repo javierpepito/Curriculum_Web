@@ -84,47 +84,10 @@ import { cvData } from '../data/cvData';
               <span class="badge-pink">ID: JAVIER MÉNDEZ</span>
               <span class="badge-cyan">NV. 05 INGENIERÍA</span>
             </div>
-            <p class="photo-caption">
-              Estudiante de Ingeniería en Informática. Enfocado en arquitectura de software, desarrollo frontend & backend y soluciones interactivas.
-            </p>
+            
           </div>
         </div>
       </div>
-
-      {/* 
-        ============================================================
-        PANEL DE ATRIBUTOS (Temporalmente oculto/comentado a petición del usuario)
-        Puedes descomentar este bloque cuando quieras volver a mostrarlos:
-        ============================================================
-        <div class="about-attributes-wrap">
-          <div class="attributes-panel cyber-card">
-            <div class="panel-top-bar">
-              <span class="panel-label">ATRIBUTOS</span>
-              <span class="panel-level">NV. 05</span>
-            </div>
-
-            <div class="stat-bars-list">
-              {cvData.attributes.map((attr) => (
-                <div class="stat-item">
-                  <div class="stat-info">
-                    <span class="stat-name">{attr.name}</span>
-                    <span class="stat-percent">{attr.value}%</span>
-                  </div>
-                  <div class="stat-track">
-                    <div class="stat-fill" style={`width: ${attr.value}%`}></div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div class="skills-tags-row">
-              {cvData.personalSkills.map((skill) => (
-                <span class="skill-tag-pill">{skill}</span>
-              ))}
-            </div>
-          </div>
-        </div>
-      */}
     </div>
   </div>
 </section>
@@ -252,7 +215,7 @@ import { cvData } from '../data/cvData';
   .photo-frame {
     position: relative;
     width: 100%;
-    height: 215px;
+    height: 350px;
     overflow: hidden;
     border: 1px solid rgba(0, 240, 255, 0.4);
     background: #060918;

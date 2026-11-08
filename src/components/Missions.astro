@@ -12,10 +12,9 @@ import MoonPlanet from './MoonPlanet.astro';
     <div class="section-header">
       <span class="badge-pink">BITÁCORA DE OPERACIONES</span>
       <div class="section-title-wrap">
-        <span class="section-number">03</span>
-        <h2 class="section-title">MISIONES</h2>
+        <span class="section-number">02</span>
+        <h2 class="section-title">MISIONES REALIZADAS</h2>
         <div class="section-line"></div>
-        <span class="section-stat">04 DESBLOQUEADAS</span>
       </div>
     </div>
 
@@ -27,7 +26,7 @@ import MoonPlanet from './MoonPlanet.astro';
           <span class="status-pulse-dot"></span>
           ARCHIVO // REGISTRO DE MISIONES
         </span>
-        <span class="showcase-status-code">SYS-04 // DESBLOQUEADAS</span>
+        <span class="showcase-status-code">DESBLOQUEADAS</span>
       </div>
 
       <div class="showcase-content">
@@ -35,11 +34,11 @@ import MoonPlanet from './MoonPlanet.astro';
           <span class="pixel-solid-shadow">VER PROYECTOS</span>
         </h3>
         <p class="showcase-desc">
-          Explora el registro completo de misiones técnicas, arquitecturas construidas y soluciones interactivas desarrolladas a lo largo de mi formación.
+          Explora el registro completo de proyectos técnicos, arquitecturas construidas y soluciones interactivas desarrolladas a lo largo de mi formación.
         </p>
 
         <div class="showcase-categories-preview">
-          <span class="preview-tag"><span class="tag-num">01</span> IOT & EMBEBIDOS</span>
+          <span class="preview-tag"><span class="tag-num">01</span> IOT</span>
           <span class="preview-tag"><span class="tag-num">02</span> DESARROLLO WEB</span>
           <span class="preview-tag"><span class="tag-num">03</span> APPS MÓVILES</span>
           <span class="preview-tag"><span class="tag-num">04</span> DATA SCIENCE</span>
@@ -47,266 +46,14 @@ import MoonPlanet from './MoonPlanet.astro';
 
         <div class="showcase-btn-wrap">
           <a href="/proyectos" class="btn-cyber-cyan btn-showcase-action">
-            <span>VER PROYECTOS EN VERTICAL</span>
+            <span>IR</span>
             <span class="btn-arrow">→</span>
           </a>
         </div>
       </div>
     </div>
-
-    <!-- Missions Cards Grid -->
-    <div class="missions-grid">
-      {cvData.missions.map((mission) => (
-        <article class="mission-card cyber-card" data-mission-id={mission.id}>
-          <!-- Top Card Meta -->
-          <div class="mission-card-header">
-            <span class="mission-number-tag">MISIÓN {mission.number}</span>
-            <span class="mission-status-tag">
-              <span class="status-box">■</span> DESBLOQUEADA
-            </span>
-          </div>
-
-          <!-- Perspective Grid Graphic Frame -->
-          <div class="mission-visual-box">
-            <div class="wireframe-plane"></div>
-            
-            {mission.type === 'iot' && (
-              <div class="graphic-element graphic-iot">
-                <div class="circuit-board">
-                  <div class="chip-core"></div>
-                  <div class="circuit-wire wire-left">
-                    <span class="node pink-node"></span>
-                  </div>
-                  <div class="circuit-wire wire-right">
-                    <span class="node cyan-node"></span>
-                  </div>
-                  <span class="node floating-node-1"></span>
-                </div>
-              </div>
-            )}
-
-            {mission.type === 'web' && (
-              <div class="graphic-element graphic-web">
-                <div class="browser-mockup">
-                  <div class="browser-bar">
-                    <span class="bar-dot pink-dot"></span>
-                    <span class="bar-dot yellow-dot"></span>
-                  </div>
-                  <div class="browser-content">
-                    <div class="content-block-left"></div>
-                    <div class="content-block-cyan"></div>
-                    <div class="content-lines">
-                      <span class="line-mock"></span>
-                      <span class="line-mock short"></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {mission.type === 'mobile' && (
-              <div class="graphic-element graphic-space">
-                <div class="space-field">
-                  <div class="space-ship-cursor"></div>
-                  <div class="trajectory-line"></div>
-                  <div class="target-planet"></div>
-                </div>
-              </div>
-            )}
-
-            {mission.type === 'data' && (
-              <div class="graphic-element graphic-data">
-                <div class="chart-container">
-                  <div class="chart-line-trend"></div>
-                  <div class="chart-bars">
-                    <div class="bar bar-cyan"></div>
-                    <div class="bar bar-pink"></div>
-                    <div class="bar bar-yellow"></div>
-                  </div>
-                </div>
-              </div>
-            )}
-          </div>
-
-          <!-- Mission Information -->
-          <div class="mission-body">
-            <h3 class="mission-title font-pixel">{mission.title}</h3>
-            <p class="mission-desc">{mission.shortDesc}</p>
-
-            <!-- Tech Badges -->
-            <div class="mission-techs-list">
-              {mission.technologies.slice(0, 3).map((tech) => (
-                <span class="tech-chip">{tech}</span>
-              ))}
-            </div>
-          </div>
-
-          <!-- Bottom Status & Action Bar -->
-          <div class="mission-card-footer">
-            <span class="footer-status">{mission.status}</span>
-            <button
-              type="button"
-              class="btn-open-mission font-pixel"
-              data-mission={JSON.stringify(mission)}
-            >
-              VER ARCHIVO &gt;
-            </button>
-          </div>
-        </article>
-      ))}
-    </div>
   </div>
 </section>
-
-<!-- Client Script to handle modal interaction -->
-<script>
-  import { cvData } from '../data/cvData';
-
-  function setupMissionModal() {
-    const modalBackdrop = document.getElementById('mission-modal');
-    const closeTrigger = document.getElementById('modal-close-trigger');
-    const titleEl = document.getElementById('modal-mission-title');
-    const numEl = document.getElementById('modal-mission-number');
-    const descEl = document.getElementById('modal-mission-desc');
-    const challengesEl = document.getElementById('modal-mission-challenges');
-    const techsEl = document.getElementById('modal-mission-techs');
-    const statusEl = document.getElementById('modal-mission-status');
-    const repoEl = document.getElementById('modal-mission-repo');
-    const graphicEl = document.getElementById('modal-graphic-content');
-
-    if (!modalBackdrop) return;
-
-    function openModal(mission: any) {
-      if (!mission) return;
-
-      if (numEl) numEl.textContent = `ARCHIVO DE MISIÓN // ${mission.number}`;
-      if (titleEl) titleEl.textContent = mission.title;
-      if (descEl) descEl.textContent = mission.fullDesc;
-      if (challengesEl) challengesEl.textContent = mission.challenges;
-      if (statusEl) statusEl.textContent = mission.status;
-      if (repoEl) repoEl.setAttribute('href', mission.repoUrl || 'https://github.com');
-
-      // Populate technologies
-      if (techsEl) {
-        techsEl.innerHTML = '';
-        mission.technologies.forEach((tech: string) => {
-          const chip = document.createElement('span');
-          chip.className = 'modal-chip';
-          chip.textContent = tech;
-          techsEl.appendChild(chip);
-        });
-      }
-
-      // Populate graphic based on type
-      if (graphicEl) {
-        let graphicHtml = '';
-        if (mission.type === 'iot') {
-          graphicHtml = `
-            <div class="circuit-board" style="transform: scale(1.2);">
-              <div class="chip-core"></div>
-              <div class="circuit-wire wire-left"><span class="node pink-node"></span></div>
-              <div class="circuit-wire wire-right"><span class="node cyan-node"></span></div>
-              <span class="node floating-node-1"></span>
-            </div>
-          `;
-        } else if (mission.type === 'web') {
-          graphicHtml = `
-            <div class="browser-mockup" style="transform: scale(1.2);">
-              <div class="browser-bar">
-                <span class="bar-dot pink-dot"></span>
-                <span class="bar-dot yellow-dot"></span>
-              </div>
-              <div class="browser-content">
-                <div class="content-block-left"></div>
-                <div class="content-block-cyan"></div>
-                <div class="content-lines">
-                  <span class="line-mock"></span>
-                  <span class="line-mock short"></span>
-                </div>
-              </div>
-            </div>
-          `;
-        } else if (mission.type === 'mobile') {
-          graphicHtml = `
-            <div class="space-field" style="transform: scale(1.2);">
-              <div class="space-ship-cursor"></div>
-              <div class="trajectory-line"></div>
-              <div class="target-planet"></div>
-            </div>
-          `;
-        } else {
-          graphicHtml = `
-            <div class="chart-container" style="transform: scale(1.2);">
-              <div class="chart-line-trend"></div>
-              <div class="chart-bars">
-                <div class="bar bar-cyan"></div>
-                <div class="bar bar-pink"></div>
-                <div class="bar bar-yellow"></div>
-              </div>
-            </div>
-          `;
-        }
-        graphicEl.innerHTML = graphicHtml;
-      }
-
-      modalBackdrop.classList.add('active');
-      modalBackdrop.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeModal() {
-      modalBackdrop?.classList.remove('active');
-      modalBackdrop?.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-    }
-
-    // Attach click events on "VER ARCHIVO >" buttons
-    const openBtns = document.querySelectorAll('.btn-open-mission');
-    openBtns.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const dataStr = (btn as HTMLElement).dataset.mission;
-        if (dataStr) {
-          try {
-            const missionData = JSON.parse(dataStr);
-            openModal(missionData);
-          } catch (err) {
-            console.error('Error parsing mission data:', err);
-          }
-        }
-      });
-    });
-
-    // Also clicking anywhere on the card opens the mission
-    const cards = document.querySelectorAll('.mission-card');
-    cards.forEach((card) => {
-      card.addEventListener('click', () => {
-        const id = (card as HTMLElement).dataset.missionId;
-        const mission = cvData.missions.find((m) => m.id === id);
-        if (mission) openModal(mission);
-      });
-    });
-
-    // Close handlers
-    closeTrigger?.addEventListener('click', closeModal);
-    modalBackdrop.addEventListener('click', (e) => {
-      if (e.target === modalBackdrop) closeModal();
-    });
-
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modalBackdrop.classList.contains('active')) {
-        closeModal();
-      }
-    });
-  }
-
-  // Run setup when DOM is ready
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', setupMissionModal);
-  } else {
-    setupMissionModal();
-  }
-</script>
 
 <style>
   .missions-section {

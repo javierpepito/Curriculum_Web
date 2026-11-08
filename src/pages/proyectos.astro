@@ -21,24 +21,18 @@ import { cvData } from '../data/cvData';
             <span class="back-arrow">&lt;</span>
             <span>VOLVER AL INICIO</span>
           </a>
-          <span class="breadcrumb-sep">//</span>
-          <span class="breadcrumb-current">BITÁCORA VERTICAL DE MISIONES</span>
         </div>
 
         <!-- Section Header -->
         <div class="section-header">
-          <span class="badge-pink">EXPEDIENTES TÁCTICOS COMPLETOS</span>
+          <span class="badge-pink">BITACORA COMPLETA</span>
           <div class="section-title-wrap">
-            <span class="section-number">03</span>
             <h1 class="section-title">
               <span class="pixel-solid-shadow">MISIONES</span>
-              <span class="pixel-outline-cyan">& PROYECTOS</span>
+              <span class="pixel-outline-cyan"> & PROYECTOS</span>
             </h1>
             <div class="section-line"></div>
           </div>
-          <p class="projects-lead">
-            Registro cronológico y detallado de todas las misiones técnicas, arquitecturas construidas y desafíos resueltos a lo largo de mi formación.
-          </p>
         </div>
 
         <!-- Tactical Stats Bar -->
@@ -53,10 +47,6 @@ import { cvData } from '../data/cvData';
             <span class="stat-cell-value">IOT · WEB · MOBILE · DATA</span>
           </div>
           <div class="stat-divider"></div>
-          <div class="stat-cell">
-            <span class="stat-cell-label">MODO DE VISTA</span>
-            <span class="stat-cell-value text-cyan">VERTICAL // BITÁCORA</span>
-          </div>
         </div>
       </div>
     </section>
@@ -220,8 +210,8 @@ import { cvData } from '../data/cvData';
         <!-- Back to Top / Next Step Box -->
         <div class="page-footer-nav cyber-card">
           <div class="footer-nav-text">
-            <span class="badge-cyan">FIN DEL REGISTRO // MISIONES</span>
-            <h3>¿TIENES UNA NUEVA MISIÓN EN MENTE?</h3>
+            <span class="badge-cyan">FIN DEL REGISTRO</span>
+            <h3>¿TIENES UN NUEVO PROYECTO EN MENTE?</h3>
             <p>Disponible para prácticas, proyectos innovadores y colaboraciones técnicas.</p>
           </div>
           <div class="footer-nav-actions">
@@ -262,6 +252,7 @@ import { cvData } from '../data/cvData';
     const graphicEl = document.getElementById('modal-graphic-content');
 
     if (!modalBackdrop) return;
+    const backdrop = modalBackdrop;
 
     function openModal(mission: any) {
       if (titleEl) titleEl.textContent = mission.title;
@@ -340,14 +331,14 @@ import { cvData } from '../data/cvData';
         graphicEl.innerHTML = graphicHtml;
       }
 
-      modalBackdrop.classList.add('active');
-      modalBackdrop.setAttribute('aria-hidden', 'false');
+      backdrop.classList.add('active');
+      backdrop.setAttribute('aria-hidden', 'false');
       document.body.style.overflow = 'hidden';
     }
 
     function closeModal() {
-      modalBackdrop?.classList.remove('active');
-      modalBackdrop?.setAttribute('aria-hidden', 'true');
+      backdrop.classList.remove('active');
+      backdrop.setAttribute('aria-hidden', 'true');
       document.body.style.overflow = '';
     }
 
