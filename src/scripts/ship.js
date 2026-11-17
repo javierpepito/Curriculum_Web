@@ -3,8 +3,9 @@ import { Objetct } from "./objetcts.js";
 export class Ship{
     constructor(ctx,nave_pixel){
         this.ctx =ctx;
-        this.image = new Objetct(nave_pixel,{x:3,y:1},260,260,0.3);
+        this.image = new Objetct(nave_pixel,{x:3,y:1},260,260,0.8);
         this.position = {x:450,y:500};
+        this.speed = 0;
         this.keys = {
             A:false,
             D:false,
@@ -27,9 +28,15 @@ export class Ship{
         if(this.keys.D) this.angle+=0.04;
         if(this.keys.A) this.angle-=0.04;
         if(this.keys.W){
-            this.position.x -= Math.cos(this.angle + Math.PI/2);
-            this.position.y += Math.sin(this.angle - Math.PI/2);
+            this.speed += 0.9;
+            if(this.speed>=4.5) this.speed = 4.5;  
         }
+        if(!this.keys.W){
+            this.speed -= 0.09;
+            if (this.speed<=0) this.speed = 0;
+        }
+        this.position.x -= Math.cos(this.angle + Math.PI/2) * this.speed;
+        this.position.y += Math.sin(this.angle - Math.PI/2) * this.speed;
     }
 
     update(){
